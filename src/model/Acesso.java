@@ -9,19 +9,19 @@ package model;
  *
  * @author vinicius caetano
  */
-public class Mensagem {
+public class Acesso {
     
     private int codigo;
-    private String descricao;
     private Usuario usuario;
+    private String senha;
 
-    public Mensagem() {
+    public Acesso() {
     }
 
-    public Mensagem(int codigo, String descricao, Usuario usuario) {
+    public Acesso(int codigo, Usuario usuario, String senha) {
         this.codigo = codigo;
-        this.descricao = descricao;
         this.usuario = usuario;
+        this.senha = senha;
     }
 
     public int getCodigo() {
@@ -32,20 +32,20 @@ public class Mensagem {
         this.codigo = codigo;
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
     public Usuario getUsuario() {
         return usuario;
     }
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
     
     

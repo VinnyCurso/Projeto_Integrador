@@ -9,18 +9,20 @@ package model;
  *
  * @author vinicius caetano
  */
-public class Mensagem {
+public class AvaliacaoComprador {
     
-    private int codigo;
-    private String descricao;
+     private int codigo;
+    private int nota;
+    private Anuncio anuncio;
     private Usuario usuario;
 
-    public Mensagem() {
+    public AvaliacaoComprador() {
     }
 
-    public Mensagem(int codigo, String descricao, Usuario usuario) {
+    public AvaliacaoComprador(int codigo, int nota, Anuncio anuncio, Usuario usuario) {
         this.codigo = codigo;
-        this.descricao = descricao;
+        this.nota = nota;
+        this.anuncio = anuncio;
         this.usuario = usuario;
     }
 
@@ -32,12 +34,20 @@ public class Mensagem {
         this.codigo = codigo;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public int getNota() {
+        return nota;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setNota(int nota) {
+        this.nota = nota;
+    }
+
+    public Anuncio getAnuncio() {
+        return anuncio;
+    }
+
+    public void setAnuncio(Anuncio anuncio) {
+        this.anuncio = anuncio;
     }
 
     public Usuario getUsuario() {
@@ -47,7 +57,6 @@ public class Mensagem {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    
     
     
 }

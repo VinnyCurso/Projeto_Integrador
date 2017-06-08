@@ -9,6 +9,6 @@ package dao;
  *
  * @author vinicius caetano
  */
-public class AvaliacaoDao {
+public class AvaliacaoCompradorDao {
     
 }

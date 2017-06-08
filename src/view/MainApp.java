@@ -22,8 +22,9 @@ public class MainApp extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("MainApp.fxml"));
          
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(MainApp.class.getResource("/image/iguana.jpg").toExternalForm());
+        scene.getStylesheets().add(MainApp.class.getResource("/image/anubiis.jpg").toExternalForm());
         stage.setScene(scene);
+        stage.setMaximized(true);
         stage.show();
     }
 
