@@ -12,13 +12,13 @@ package model;
 public class Acesso {
     
     private int codigo;
-    private Usuario usuario;
+    private String usuario;
     private String senha;
 
     public Acesso() {
     }
 
-    public Acesso(int codigo, Usuario usuario, String senha) {
+    public Acesso(int codigo, String usuario, String senha) {
         this.codigo = codigo;
         this.usuario = usuario;
         this.senha = senha;
@@ -32,11 +32,11 @@ public class Acesso {
         this.codigo = codigo;
     }
 
-    public Usuario getUsuario() {
+    public String getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
 

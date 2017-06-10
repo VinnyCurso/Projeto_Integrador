@@ -5,9 +5,16 @@
  */
 package controller;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
+import dao.AcessoDao;
+import dao.UsuarioDao;
 import database.ConectaBanco;
+import database.Database;
+import database.DatabaseFactory;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -15,8 +22,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import model.Acesso;
 import model.Usuario;
 
 /**
@@ -26,20 +35,38 @@ import model.Usuario;
  */
 public class UsuarioCtr implements Initializable {
     
+    @FXML JFXTextField txtNome;
+    @FXML JFXTextField txtSobrenome;
+    @FXML JFXTextField txtTelefone;
+    @FXML JFXTextField txtEmail;
+    @FXML JFXTextField txtSenha;
     
     
-      private Usuario usuario;
-      private Stage stage;
+    @FXML private JFXButton btnSalvar;
+    @FXML private JFXButton btnAlterar;
+    @FXML private JFXButton btnExcluir;
+    @FXML private JFXButton btnCancelar;
+    
+    private Usuario usuario;
+    private Stage dialogStage;
 
-//    ConectaBanco conecta = new ConectaBanco();
+    ConectaBanco conecta = new ConectaBanco();
 
+      
+         //Atritutos para manipulação banco de dados
+    
+    private final Database database = DatabaseFactory.getDatabase("postgresql");
+    private final Connection connection = database.conectar();
+    private final UsuarioDao usuarioDao = new UsuarioDao();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-           usuario = new Usuario();
-//        conecta.conexao();
+        
+        usuario = new Usuario();
+        conecta.conexao();
+        usuarioDao.setConnection(connection);
     } 
     
       //Evento Chamar a tela 
@@ -60,7 +87,16 @@ public class UsuarioCtr implements Initializable {
     @FXML
     public void btnOnActionSalvar() throws IOException, SQLException {
 
-        JOptionPane.showMessageDialog(null, "Salvo com sucesso ");
+        
+        if (usuario != null) {
+            Usuario usuario = new Usuario();
+            usuarioDao.inserir(usuario);
+            JOptionPane.showMessageDialog(null, "Salvo com sucesso ");
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Favor , inserir dados corretos");
+            alert.show();
+        }
 
     }
     

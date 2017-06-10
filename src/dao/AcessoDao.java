@@ -32,10 +32,10 @@ public class AcessoDao {
     }
 
     public boolean inserir(Acesso acesso) {
-        String sql = "INSERT INTO acesso (usuario,senha) VALUES(?,?)";
+        String sql = "INSERT INTO login (usuario,senha) VALUES(?,?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setObject(1, acesso.getUsuario());
+            stmt.setString(1, acesso.getUsuario());
             stmt.setString(2, acesso.getSenha());
 
             stmt.execute();
@@ -63,7 +63,7 @@ public class AcessoDao {
     }
 
     public boolean remover(Acesso acesso) {
-        String sql = "DELETE FROM acesso WHERE codigo=?";
+        String sql = "DELETE FROM login WHERE codigo=?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, (int) acesso.getCodigo());
