@@ -5,6 +5,8 @@
  */
 package dao;
 
+import java.io.FileReader;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,9 +37,9 @@ public class ImagemDao {
         String sql = "INSERT INTO imagem(imagem) VALUES(?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setByte(1, imagem.getImagem());
+            stmt.setBlob(1, (Blob) imagem.getImagem());
 
-            stmt.execute();
+            stmt.executeUpdate();
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(ImagemDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -49,7 +51,7 @@ public class ImagemDao {
         String sql = "UPDATE imagem SET imagem=?  WHERE codigo=?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setByte(1, imagem.getImagem());
+            stmt.setBlob(1, (Blob) imagem.getImagem());
 
             stmt.execute();
             return true;
@@ -81,7 +83,7 @@ public class ImagemDao {
             while (resultado.next()) {
                 Imagem imagem = new Imagem();
                 imagem.setCodigo(resultado.getInt("codigo"));
-                imagem.setImagem(resultado.getByte("imagem"));
+                imagem.setImagem((FileReader) resultado.getBlob("imagem"));
 
                 retorno.add(imagem);
             }
@@ -104,7 +106,7 @@ public class ImagemDao {
             if (resultado.next()) {
 
                 imagem.setCodigo(resultado.getInt("codigo"));
-                imagem.setImagem(resultado.getByte("imagem"));
+               imagem.setImagem((FileReader) resultado.getBlob("imagem"));
 
                 retorno = imagem;
             }

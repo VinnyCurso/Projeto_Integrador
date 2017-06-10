@@ -29,9 +29,9 @@ public class UsuarioCtr implements Initializable {
     
     
       private Usuario usuario;
-        private Stage stage;
+      private Stage stage;
 
-    ConectaBanco conecta = new ConectaBanco();
+//    ConectaBanco conecta = new ConectaBanco();
 
     /**
      * Initializes the controller class.
@@ -39,18 +39,18 @@ public class UsuarioCtr implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
            usuario = new Usuario();
-        conecta.conexao();
+//        conecta.conexao();
     } 
     
       //Evento Chamar a tela 
     
         public void gerarTela() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/br/view/ClienteView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/UsuarioView.fxml"));
 
         Stage dialogStage = new Stage();
         Scene scene = new Scene(root);
 
-        dialogStage.setTitle("Manter Anuncio");
+        dialogStage.setTitle("Cadastro Usuario");
         dialogStage.setScene(scene);
         dialogStage.showAndWait();
     }
@@ -96,6 +96,14 @@ public class UsuarioCtr implements Initializable {
     public void btnOnActionlistar() throws IOException {
 
         JOptionPane.showMessageDialog(null, "Segue a lista de dados : ");
+
+    }
+    
+       @FXML
+    public void btnOnActionCancelar() throws IOException {
+
+        JOptionPane.showMessageDialog(null, "Segue a lista de dados : ");
+        
 
     }
     

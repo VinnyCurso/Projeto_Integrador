@@ -5,6 +5,7 @@
  */
 package controller;
 
+import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,6 +22,12 @@ import javafx.stage.Stage;
  * @author vinicius caetano
  */
 public class MainAppCtr implements Initializable {
+    
+    
+    @FXML JFXButton btnAnuncio;
+    @FXML JFXButton btnUsuario;
+    @FXML JFXButton btnCategoria;
+    @FXML JFXButton btnMensagem;
     
     private Stage dialogStage;
     
@@ -48,9 +55,33 @@ public class MainAppCtr implements Initializable {
     
     //Ação para chamar a tela de Anuncio
      @FXML
-    public void btnOnActionCliente()throws IOException {
+    public void btnOnActionAnuncio()throws IOException {
         
         AnuncioCtr anuncioCtr = new AnuncioCtr();
         anuncioCtr.gerarTela();
+}
+    
+        //Ação para chamar a tela de Usuario
+     @FXML
+    public void btnOnActionUsuario()throws IOException {
+        
+        UsuarioCtr usuarioCtr = new UsuarioCtr();
+        usuarioCtr.gerarTela();
+}
+    
+            //Ação para chamar a tela de Mensagem
+     @FXML
+    public void btnOnActionMensagem()throws IOException {
+        
+        MensagemCtr mensagemCtr = new MensagemCtr();
+        mensagemCtr.gerarTela();
+}
+    
+                //Ação para chamar a tela de Login
+     @FXML
+    public void btnOnActionLogin()throws IOException {
+        
+        LoginCtr loginCtr = new LoginCtr();
+        loginCtr.gerarTela();
 }
 }

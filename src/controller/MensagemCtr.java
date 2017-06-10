@@ -43,12 +43,12 @@ public class MensagemCtr implements Initializable {
       //Evento Chamar a tela 
     
         public void gerarTela() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/br/view/ClienteView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/MensagemView.fxml"));
 
         Stage dialogStage = new Stage();
         Scene scene = new Scene(root);
 
-        dialogStage.setTitle("Manter Anuncio");
+        dialogStage.setTitle("Manter Mensagem");
         dialogStage.setScene(scene);
         dialogStage.showAndWait();
     }

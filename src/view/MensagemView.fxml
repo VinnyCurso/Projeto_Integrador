@@ -1,14 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MensagemCtr">
-    <stylesheets>
-        <URL value="@/css/mensagem.css"/>
-    </stylesheets>
-</AnchorPane>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="61.0" prefWidth="652.0">
+         <children>
+            <Label layoutX="37.0" layoutY="22.0" text="Mensagem Integração - Negociacção" />
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="65.0" prefWidth="652.0">
+         <children>
+            <TextField layoutX="49.0" layoutY="20.0" prefHeight="25.0" prefWidth="396.0" />
+            <JFXButton buttonType="RAISED" layoutX="462.0" layoutY="20.0" prefHeight="25.0" prefWidth="145.0" text="Pesquisar" />
+         </children>
+      </AnchorPane>
+      <SplitPane dividerPositions="0.3032581453634085" prefHeight="160.0" prefWidth="200.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="25.0" text="Codigo Comprador :" />
+                  <Label layoutX="14.0" layoutY="62.0" text="Nome Comprador :" />
+                  <Label layoutX="165.0" layoutY="136.0" text="Mensagem :" />
+                  <Label layoutX="137.0" layoutY="25.0" text="Label" />
+                  <Label layoutX="137.0" layoutY="62.0" text="Label" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <JFXTextArea layoutX="8.0" layoutY="14.0" prefHeight="110.0" prefWidth="350.0" />
+                  <JFXButton layoutX="385.0" layoutY="112.0" text="Enviar" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+      <SplitPane dividerPositions="0.3032581453634085" layoutX="10.0" layoutY="136.0" prefHeight="160.0" prefWidth="200.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="25.0" text="Codigo Vendedor:" />
+                  <Label layoutX="14.0" layoutY="62.0" text="Nome Vendedor :" />
+                  <Label layoutX="165.0" layoutY="136.0" text="Mensagem :" />
+                  <Label layoutX="151.0" layoutY="25.0" text="Label" />
+                  <Label layoutX="151.0" layoutY="62.0" text="Label" />
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <JFXTextArea layoutX="8.0" layoutY="14.0" prefHeight="110.0" prefWidth="350.0" />
+                  <JFXButton layoutX="385.0" layoutY="112.0" text="Enviar" />
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</VBox>

@@ -43,7 +43,7 @@ public class NegociacaoCtr implements Initializable {
       //Evento Chamar a tela 
     
         public void gerarTela() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/br/view/ClienteView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/br/view/NegociacaoView.fxml"));
 
         Stage dialogStage = new Stage();
         Scene scene = new Scene(root);

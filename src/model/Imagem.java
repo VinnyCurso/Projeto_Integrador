@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.io.FileReader;
+
 /**
  *
  * @author vinicius caetano
@@ -12,12 +14,12 @@ package model;
 public class Imagem {
     
     private int codigo;
-    private byte imagem;
+    private FileReader imagem;
 
     public Imagem() {
     }
 
-    public Imagem(int codigo, byte imagem) {
+    public Imagem(int codigo, FileReader imagem) {
         this.codigo = codigo;
         this.imagem = imagem;
     }
@@ -30,14 +32,12 @@ public class Imagem {
         this.codigo = codigo;
     }
 
-    public byte getImagem() {
+    public FileReader getImagem() {
         return imagem;
     }
 
-    public void setImagem(byte imagem) {
+    public void setImagem(FileReader imagem) {
         this.imagem = imagem;
     }
-    
-    
-    
+  
 }
