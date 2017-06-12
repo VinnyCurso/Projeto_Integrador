@@ -32,7 +32,7 @@ public class AcessoDao {
     }
 
     public boolean inserir(Acesso acesso) {
-        String sql = "INSERT INTO login (usuario,senha) VALUES(?,?)";
+        String sql = "insert into login (usuario,senha) values (?,?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, acesso.getUsuario());

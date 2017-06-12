@@ -6,15 +6,17 @@
 package controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXHamburger;
+import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -23,7 +25,7 @@ import javafx.stage.Stage;
  */
 public class MainAppCtr implements Initializable {
     
-    
+    @FXML JFXHamburger ItsMenu;
     @FXML JFXButton btnAnuncio;
     @FXML JFXButton btnUsuario;
     @FXML JFXButton btnCategoria;
@@ -34,11 +36,6 @@ public class MainAppCtr implements Initializable {
     @FXML
     private Label label;
     
-    @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -49,7 +46,13 @@ public class MainAppCtr implements Initializable {
 //        imgView10.setFitHeight(65);
 //        imgView10.setFitWidth(80);
 //        btnAnuncio.setGraphic(imgView10);
-        
+
+        HamburgerSlideCloseTransition transacao = new HamburgerSlideCloseTransition(ItsMenu);
+        transacao.setRate(-1);
+        ItsMenu.addEventHandler(MouseEvent.MOUSE_CLICKED , (e) ->{
+               transacao.setRate(transacao.getRate()*-1);
+               transacao.play();
+                });
     }    
     
     
