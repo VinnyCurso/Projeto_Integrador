@@ -15,8 +15,11 @@ import database.DatabaseFactory;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -89,9 +92,16 @@ public class UsuarioCtr implements Initializable {
 
         
         if (usuario != null) {
-            Usuario usuario = new Usuario();
-            usuarioDao.inserir(usuario);
-            JOptionPane.showMessageDialog(null, "Salvo com sucesso ");
+            Usuario user = new Usuario();
+            
+             user.setNome(txtNome.getText());
+             user.setSobrenome(txtSobrenome.getText());
+             user.setTelefone(txtTelefone.getText());
+             user.setEmail(txtEmail.getText());
+             user.setSenha(txtSenha.getText());
+      
+            usuarioDao.inserir(user);
+            JOptionPane.showMessageDialog(null, "Usuario Salvo com sucesso ");
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Favor , inserir dados corretos");

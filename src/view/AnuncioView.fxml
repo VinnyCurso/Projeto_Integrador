@@ -1,14 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AnuncioCtr">
-    <stylesheets>
-        <URL value="@/css/anuncio.css"/>
-    </stylesheets>
-</AnchorPane>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AnuncioCtr">
+   <children>
+      <AnchorPane prefHeight="37.0" prefWidth="700.0">
+         <children>
+            <TextField layoutX="31.0" layoutY="32.0" prefHeight="25.0" prefWidth="370.0" />
+            <JFXButton buttonType="RAISED" layoutX="408.0" layoutY="32.0" prefHeight="25.0" prefWidth="81.0" text="Pesquisar" />
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="388.0" prefWidth="800.0">
+         <children>
+            <Pane layoutX="21.0" layoutY="31.0" prefHeight="296.0" prefWidth="242.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="21.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/goanubis.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="43.0" layoutY="182.0" prefHeight="87.0" prefWidth="170.0" text="Label" />
+               </children>
+            </Pane>
+            <Pane layoutX="283.0" layoutY="31.0" prefHeight="296.0" prefWidth="242.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="21.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/goanubis.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="43.0" layoutY="182.0" prefHeight="87.0" prefWidth="170.0" text="Label" />
+               </children>
+            </Pane>
+            <Pane layoutX="536.0" layoutY="21.0" prefHeight="296.0" prefWidth="242.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="21.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/goanubis.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="43.0" layoutY="182.0" prefHeight="87.0" prefWidth="170.0" text="Label" />
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="145.0" prefWidth="800.0" />
+   </children>
+</VBox>

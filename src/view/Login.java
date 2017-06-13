@@ -10,19 +10,20 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
  * @author vinicius caetano
  */
-public class MainApp extends Application {
+public class Login extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("MainApp.fxml"));
-         
+        Parent root = FXMLLoader.load(getClass().getResource("/view/LoginView.fxml"));
+        
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(MainApp.class.getResource("/image/Anubis.jpg").toExternalForm());
+        stage.initStyle(StageStyle.TRANSPARENT);
         stage.setScene(scene);
         stage.show();
     }

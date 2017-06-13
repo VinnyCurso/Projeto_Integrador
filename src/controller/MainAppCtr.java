@@ -6,18 +6,24 @@
 package controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
-import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
+import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
 
 /**
  *
@@ -25,66 +31,65 @@ import javafx.stage.Stage;
  */
 public class MainAppCtr implements Initializable {
     
-    @FXML JFXHamburger ItsMenu;
-    @FXML JFXButton btnAnuncio;
+    @FXML  JFXButton btnAnuncio;
     @FXML JFXButton btnUsuario;
     @FXML JFXButton btnCategoria;
     @FXML JFXButton btnMensagem;
     
-    private Stage dialogStage;
     
-    @FXML
-    private Label label;
+    @FXML private AnchorPane anchorpane;
+    @FXML private JFXDrawer drawer;
+    @FXML private JFXHamburger hamburguer;
+    @FXML private VBox box;
+   
+   
     
-    
-    @Override
+      @Override
     public void initialize(URL url, ResourceBundle rb) {
-     
-        //            Imagem Botao 
-//        Image imganuncio = new Image(getClass().getResourceAsStream("/imagem/anuncio.png"));
-//        ImageView imgView10 = new ImageView(imganuncio);
-//        imgView10.setFitHeight(65);
-//        imgView10.setFitWidth(80);
-//        btnAnuncio.setGraphic(imgView10);
+        
+   
+        try {
+            VBox box = FXMLLoader.load(getClass().getResource("/view/DrawerView.fxml"));
+            
+            drawer.setSidePane(box);
+            HamburgerBackArrowBasicTransition transacao = new HamburgerBackArrowBasicTransition();
+            transacao.setRate(-1);
+            hamburguer.addEventHandler(MouseEvent.MOUSE_PRESSED, (e)->{
+                transacao.setRate(transacao.getRate()*-1);
+                transacao.play();
+                
+                if(drawer.isShown()){
+                    drawer.close();
+                }else{
+                    drawer.open();
+                }
+            });
+        } catch (IOException ex) {
+            Logger.getLogger(MainAppCtr.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    }
+    
+     //Evento Chamar a tela 
+    
+        public void gerarTela() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/MainApp.fxml"));
 
-        HamburgerSlideCloseTransition transacao = new HamburgerSlideCloseTransition(ItsMenu);
-        transacao.setRate(-1);
-        ItsMenu.addEventHandler(MouseEvent.MOUSE_CLICKED , (e) ->{
-               transacao.setRate(transacao.getRate()*-1);
-               transacao.play();
-                });
-    }    
-    
-    
-    //Ação para chamar a tela de Anuncio
-     @FXML
-    public void btnOnActionAnuncio()throws IOException {
+        Stage dialogStage = new Stage();
+        Scene scene = new Scene(root);
+
+        dialogStage.setTitle("Sistema Comercial Iguanys");
+        dialogStage.setScene(scene);
+        dialogStage.showAndWait();
+    }
         
-        AnuncioCtr anuncioCtr = new AnuncioCtr();
-        anuncioCtr.gerarTela();
-}
-    
-        //Ação para chamar a tela de Usuario
-     @FXML
-    public void btnOnActionUsuario()throws IOException {
         
-        UsuarioCtr usuarioCtr = new UsuarioCtr();
-        usuarioCtr.gerarTela();
-}
-    
-            //Ação para chamar a tela de Mensagem
+                   //Ação para chamar a tela de Mensagem
      @FXML
-    public void btnOnActionMensagem()throws IOException {
+    public void btnOnActionCliente()throws IOException {
         
-        MensagemCtr mensagemCtr = new MensagemCtr();
-        mensagemCtr.gerarTela();
-}
-    
-                //Ação para chamar a tela de Login
-     @FXML
-    public void btnOnActionLogin()throws IOException {
-        
-        LoginCtr loginCtr = new LoginCtr();
-        loginCtr.gerarTela();
-}
+        UsuarioMenusCtr usuarioMenusCtr = new UsuarioMenusCtr();
+        usuarioMenusCtr.gerarTela();
+    }
+  
 }

@@ -16,16 +16,18 @@ public class Usuario {
     private String sobrenome;
     private String telefone;
     private String email;
+    private String senha;
 
     public Usuario() {
     }
 
-    public Usuario(long codigo, String nome, String sobrenome, String telefone, String email) {
+    public Usuario(long codigo, String nome, String sobrenome, String telefone, String email,String senha) {
         this.codigo = codigo;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.telefone = telefone;
         this.email = email;
+        this.senha = senha;
     }
 
     public long getCodigo() {
@@ -66,6 +68,14 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
     
     
