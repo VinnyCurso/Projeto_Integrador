@@ -1,5 +1,5 @@
 .root {
-     -fx-background-image: url("/image/anubiis.jpg");
+     -fx-background-image: url("/image/Anubis.jpg");
      -fx-background-repeat: stretch;
      -fx-background-size: 1600 850;
      -fx-background-position: center center;
@@ -17,4 +17,8 @@
 #btnToolbar{
     -fx-pref-width: 80px;
     -fx-pref-height: 80px;
+}
+
+.topPane{
+    -fx-background-color: #3196DE;
 }

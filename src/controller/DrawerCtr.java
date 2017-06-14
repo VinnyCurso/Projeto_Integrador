@@ -9,6 +9,7 @@ import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -31,6 +32,9 @@ public class DrawerCtr implements Initializable {
     @FXML
     private JFXButton btnAnuncio;
     
+    @FXML
+    private JFXButton btnSair;
+    
     @FXML private VBox box;
     @FXML private Stage dialogStage;
 
@@ -52,6 +56,10 @@ public class DrawerCtr implements Initializable {
 
         dialogStage.setScene(scene);
         dialogStage.showAndWait();
+    }
+        @FXML
+         public void btnActionSair()throws IOException{
+        Platform.exit();
     }
         
                          //Ação para chamar a tela de Mensagem

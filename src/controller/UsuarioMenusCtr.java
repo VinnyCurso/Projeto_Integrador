@@ -5,6 +5,7 @@
  */
 package controller;
 
+import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,14 +26,14 @@ import model.Usuario;
  */
 public class UsuarioMenusCtr implements Initializable {
     
-        @FXML
-    private Pane paneClienteNovo;
+    @FXML
+    private JFXButton btnNovo;
 
     @FXML
-    private Pane paneClienteExcluir;
+    private JFXButton btnAlterar;
 
     @FXML
-    private Pane paneClienteAlterar;
+    private JFXButton btnExcluir;
     
      @FXML
     private AnchorPane cardPane;
@@ -58,6 +59,22 @@ public class UsuarioMenusCtr implements Initializable {
         dialogStage.setTitle("Informações Usuario");
         dialogStage.setScene(scene);
         dialogStage.showAndWait();
+    }
+    
+               //Ação para chamar a tela de Mensagem
+     @FXML
+    public void btnOnActionNovo()throws IOException {
+        
+        UsuarioCtr usuarioCtr = new UsuarioCtr();
+        usuarioCtr.gerarTela();
+    }
+    
+                 //Ação para chamar a tela de Mensagem
+     @FXML
+    public void btnOnActionAlterarExcluir()throws IOException {
+        
+        UsuarioAlterarExcluirCtr usuarioAlterarExcluirCtr = new UsuarioAlterarExcluirCtr();
+        usuarioAlterarExcluirCtr.gerarTela();
     }
     
 }

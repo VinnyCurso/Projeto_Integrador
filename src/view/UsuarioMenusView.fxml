@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="428.0" prefWidth="738.0" stylesheets="@../css/usuariomenu.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="controller.UsuarioMenusCtr">
@@ -16,20 +16,8 @@
             </Label>
          </children>
       </AnchorPane>
-      <Pane fx:id="paneClienteNovo" layoutX="30.0" layoutY="134.0" prefHeight="200.0" prefWidth="200.0" styleClass="topPane">
-         <children>
-            <Label layoutX="86.0" layoutY="92.0" text="Novo" />
-         </children>
-      </Pane>
-      <Pane fx:id="paneClienteExcluir" layoutX="515.0" layoutY="134.0" prefHeight="200.0" prefWidth="200.0" styleClass="topPane">
-         <children>
-            <Label layoutX="86.0" layoutY="92.0" text="Excluir" />
-         </children>
-      </Pane>
-      <Pane fx:id="paneClienteAlterar" layoutX="269.0" layoutY="134.0" prefHeight="200.0" prefWidth="200.0" styleClass="topPane">
-         <children>
-            <Label layoutX="82.0" layoutY="92.0" text="Alterar" />
-         </children>
-      </Pane>
+      <JFXButton fx:id="btnNovo" layoutX="14.0" layoutY="112.0" onAction="#btnOnActionNovo" prefHeight="204.0" prefWidth="233.0" ripplerFill="#c65959" styleClass="topPane" text="Novo" />
+      <JFXButton fx:id="btnAlterar" layoutX="253.0" layoutY="112.0" onAction="#btnOnActionAlterarExcluir" prefHeight="204.0" prefWidth="233.0" ripplerFill="#c65959" styleClass="topPane" text="Alterar" />
+      <JFXButton fx:id="btnExcluir" layoutX="491.0" layoutY="112.0" onAction="#btnOnActionAlterarExcluir" prefHeight="204.0" prefWidth="233.0" ripplerFill="#c65959" styleClass="topPane" text="Excluir" />
    </children>
 </AnchorPane>
