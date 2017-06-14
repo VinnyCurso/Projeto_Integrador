@@ -13,9 +13,9 @@
          </image>
       </ImageView>
       <JFXButton fx:id="btnUsuario" onAction="#btnOnActionCliente" prefHeight="75.0" prefWidth="225.0" text="Usuario" />
-      <JFXButton fx:id="btnAnuncio" layoutX="10.0" layoutY="174.0" onAction="#btnOnActionCliente" prefHeight="75.0" prefWidth="225.0" text="Anuncio" />
-      <JFXButton fx:id="btnListaAnuncio" layoutX="10.0" layoutY="249.0" onAction="#btnOnActionAnuncio" prefHeight="75.0" prefWidth="225.0" text="Listar Anuncio" />
-      <JFXButton fx:id="btnAvaliacao" layoutX="10.0" layoutY="324.0" prefHeight="75.0" prefWidth="225.0" text="Avaliacao" />
+      <JFXButton fx:id="btnAnuncio" layoutX="10.0" layoutY="174.0" onAction="#btnOnActionAnuncio" prefHeight="75.0" prefWidth="225.0" text="Anuncio" />
+      <JFXButton fx:id="btnListaAnuncio" layoutX="10.0" layoutY="249.0" onAction="#btnOnActionListaAnuncio" prefHeight="75.0" prefWidth="225.0" text="Listar Anuncio" />
+      <JFXButton fx:id="btnAvaliacao" layoutX="10.0" layoutY="324.0" onAction="#btnOnActionAvaliacao" prefHeight="75.0" prefWidth="225.0" text="Avaliacao" />
       <JFXButton fx:id="btnSair" layoutX="10.0" layoutY="399.0" onAction="#btnActionSair" prefHeight="75.0" prefWidth="225.0" text="Sair" />
    </children>
 </VBox>

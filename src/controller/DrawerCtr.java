@@ -84,4 +84,19 @@ public class DrawerCtr implements Initializable {
         anunciosMenuCtr.gerarTela();
     }
     
+                         //Ação para chamar a tela de Mensagem
+     @FXML
+    public void btnOnActionAvaliacao()throws IOException {
+        
+        AvaliacaoVendedorCtr avaliacaoVendedorCtr = new AvaliacaoVendedorCtr();
+        avaliacaoVendedorCtr.gerarTela();
+    }
+    
+    @FXML
+    public void btnOnActionListaAnuncio()throws IOException {
+        
+        ListaAnuncioViewCtr listaAnuncioViewCtr = new ListaAnuncioViewCtr();
+        listaAnuncioViewCtr.gerarTela();
+    }
+    
 }

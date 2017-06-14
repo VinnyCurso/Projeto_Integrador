@@ -1,14 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListaAnuncioViewCtr">
-    <stylesheets>
-        <URL value="@/css/listaanuncio.css"/>
-    </stylesheets>
-</AnchorPane>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <AnchorPane prefHeight="84.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="14.0" layoutY="39.0" text="Filtro" />
+            <JFXComboBox fx:id="comboFiltroAnuncio" layoutX="58.0" layoutY="35.0" prefHeight="25.0" prefWidth="122.0" promptText="Selecione..." />
+            <JFXTextField fx:id="txtProcuraAnuncio" layoutX="210.0" layoutY="35.0" prefHeight="25.0" prefWidth="283.0" promptText="Procurar Anuncio" />
+            <JFXButton fx:id="btnPesquisar" buttonType="RAISED" layoutX="488.0" layoutY="35.0" text="Pesquisar" />
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="colunacodigo" prefWidth="75.0" text="Codigo" />
+          <TableColumn fx:id="colunaDescricao" prefWidth="75.0" text="Descricao" />
+            <TableColumn fx:id="colunaPreco" prefWidth="75.0" text="Preco" />
+            <TableColumn fx:id="colunapreco" prefWidth="75.0" text="Categoria" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </center>
+</BorderPane>
