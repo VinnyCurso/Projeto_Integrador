@@ -15,6 +15,8 @@ public class Anuncio {
     private String status;
     private float valor;
     private String categoria;
+    
+     private Anuncio proximo;
 
     public Anuncio() {
     }
@@ -56,6 +58,14 @@ public class Anuncio {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
+    }
+    
+        public Anuncio getProximo() {
+        return proximo;
+    }
+
+    public void setProximo(Anuncio proximo) {
+        this.proximo = proximo;
     }
     
     

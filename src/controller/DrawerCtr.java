@@ -26,12 +26,18 @@ import javafx.stage.Stage;
 public class DrawerCtr implements Initializable {
     
     
-        @FXML
+     @FXML
     private JFXButton btnUsuario;
 
     @FXML
     private JFXButton btnAnuncio;
-    
+
+    @FXML
+    private JFXButton btnListaAnuncio;
+
+    @FXML
+    private JFXButton btnAvaliacao;
+
     @FXML
     private JFXButton btnSair;
     
@@ -68,6 +74,14 @@ public class DrawerCtr implements Initializable {
         
         UsuarioMenusCtr usuarioMenusCtr = new UsuarioMenusCtr();
         usuarioMenusCtr.gerarTela();
+    }
+    
+                         //Ação para chamar a tela de Mensagem
+     @FXML
+    public void btnOnActionAnuncio()throws IOException {
+        
+        AnunciosMenuCtr anunciosMenuCtr = new AnunciosMenuCtr();
+        anunciosMenuCtr.gerarTela();
     }
     
 }

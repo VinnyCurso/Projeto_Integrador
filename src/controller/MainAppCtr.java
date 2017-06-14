@@ -91,5 +91,12 @@ public class MainAppCtr implements Initializable {
         UsuarioMenusCtr usuarioMenusCtr = new UsuarioMenusCtr();
         usuarioMenusCtr.gerarTela();
     }
+    
+      @FXML
+    public void btnOnActionAnuncio()throws IOException {
+        
+        AnunciosMenuCtr anunciosMenuCtr = new AnunciosMenuCtr();
+        anunciosMenuCtr.gerarTela();
+    }
   
 }
