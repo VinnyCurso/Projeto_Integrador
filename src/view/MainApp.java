@@ -22,7 +22,7 @@ public class MainApp extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("MainApp.fxml"));
          
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(MainApp.class.getResource("/image/Anubis.jpg").toExternalForm());
+        scene.getStylesheets().add(MainApp.class.getResource("/image/roboiguana.jpg").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }

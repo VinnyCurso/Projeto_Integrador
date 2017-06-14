@@ -7,7 +7,6 @@ package controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import dao.AcessoDao;
 import dao.UsuarioDao;
 import database.ConectaBanco;
 import database.Database;
@@ -15,11 +14,9 @@ import database.DatabaseFactory;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -28,7 +25,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
-import model.Acesso;
 import model.Usuario;
 
 /**
@@ -46,8 +42,6 @@ public class UsuarioCtr implements Initializable {
     
     
     @FXML private JFXButton btnSalvar;
-    @FXML private JFXButton btnAlterar;
-    @FXML private JFXButton btnExcluir;
     @FXML private JFXButton btnCancelar;
     
     private Usuario usuario;
@@ -61,6 +55,10 @@ public class UsuarioCtr implements Initializable {
     private final Database database = DatabaseFactory.getDatabase("postgresql");
     private final Connection connection = database.conectar();
     private final UsuarioDao usuarioDao = new UsuarioDao();
+    @FXML
+    private JFXButton btnAlterar;
+    @FXML
+    private JFXButton btnExcluir;
     /**
      * Initializes the controller class.
      */
@@ -102,6 +100,7 @@ public class UsuarioCtr implements Initializable {
       
             usuarioDao.inserir(user);
             JOptionPane.showMessageDialog(null, "Usuario Salvo com sucesso ");
+            LimparTela();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Favor , inserir dados corretos");
@@ -110,47 +109,44 @@ public class UsuarioCtr implements Initializable {
 
     }
     
-     @FXML
-    public void btnOnActionExcluir() throws IOException {
-
-        JOptionPane.showMessageDialog(null, "Removido com sucesso ");
-
-    }
-    
-     @FXML
-    public void btnOnActionAlterar() throws IOException {
-
-        JOptionPane.showMessageDialog(null, "Dados alterados com sucesso ");
-
-    }
-
-    @FXML
+   
     public void btnOnActionNovo() throws IOException {
 
         JOptionPane.showMessageDialog(null, "Preparado para novos dados ");
 
     }
     
-     @FXML
     public void btnOnActionConsultar() throws IOException {
 
         JOptionPane.showMessageDialog(null, "Qual dado voce deseja consultar ? ");
 
     }
-    
-      @FXML
-    public void btnOnActionlistar() throws IOException {
-
-        JOptionPane.showMessageDialog(null, "Segue a lista de dados : ");
-
-    }
+   
     
        @FXML
-    public void btnOnActionCancelar() throws IOException {
+    public void btnOnActionCancelar(ActionEvent event) throws IOException {
 
-        JOptionPane.showMessageDialog(null, "Segue a lista de dados : ");
+        Stage stage = (Stage) btnCancelar.getScene().getWindow();
+        stage.close();
         
+    }
+    
+     private void LimparTela() {
+         
+         txtNome.setText("");
+         txtSobrenome.setText("");
+         txtTelefone.setText("");
+         txtEmail.setText("");
+         txtSenha.setText("");
+         
+     }
 
+    @FXML
+    private void btnOnActionAlterar(ActionEvent event) {
+    }
+
+    @FXML
+    private void btnOnActionExcluir(ActionEvent event) {
     }
     
 }
