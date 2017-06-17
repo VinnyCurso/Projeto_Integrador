@@ -80,7 +80,7 @@ public class MainAppCtr implements Initializable {
 
         dialogStage.setTitle("Sistema Comercial Iguanys");
         dialogStage.setScene(scene);
-        dialogStage.showAndWait();
+        dialogStage.show();
     }
         
         
@@ -107,11 +107,5 @@ public class MainAppCtr implements Initializable {
         avaliacaoVendedorCtr.gerarTela();
     }
     
-    @FXML
-        public void btnOnActionListaAnuncio()throws IOException {
-        
-        ListaAnuncioViewCtr listaAnuncioViewCtr = new ListaAnuncioViewCtr();
-        listaAnuncioViewCtr.gerarTela();
-    }
   
 }

@@ -115,13 +115,7 @@ public class UsuarioCtr implements Initializable {
         JOptionPane.showMessageDialog(null, "Preparado para novos dados ");
 
     }
-    
-    public void btnOnActionConsultar() throws IOException {
-
-        JOptionPane.showMessageDialog(null, "Qual dado voce deseja consultar ? ");
-
-    }
-   
+ 
     
        @FXML
     public void btnOnActionCancelar(ActionEvent event) throws IOException {

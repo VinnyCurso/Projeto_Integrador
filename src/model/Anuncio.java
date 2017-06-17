@@ -12,18 +12,19 @@ package model;
 public class Anuncio {
     
     private int codigo;
-    private String status;
-    private float valor;
+    private String descricao;
     private String categoria;
+    private float valor;
+    
     
      private Anuncio proximo;
 
     public Anuncio() {
     }
 
-    public Anuncio(int codigo, String status, float valor, String categoria) {
+    public Anuncio(int codigo, String descricao, float valor, String categoria) {
         this.codigo = codigo;
-        this.status = status;
+        this.descricao = descricao;
         this.valor = valor;
         this.categoria = categoria;
     }
@@ -36,12 +37,12 @@ public class Anuncio {
         this.codigo = codigo;
     }
 
-    public String getStatus() {
-        return status;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public float getValor() {

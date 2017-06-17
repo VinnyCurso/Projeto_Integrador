@@ -1,63 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <AnchorPane prefHeight="61.0" prefWidth="652.0">
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="697.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MensagemCtr">
+   <top>
+      <AnchorPane prefHeight="82.0" prefWidth="697.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="37.0" layoutY="22.0" text="Mensagem Integração - Negociacção" />
+            <Label layoutX="61.0" layoutY="33.0" text="Filtro" />
+            <JFXComboBox fx:id="comboFiltroMensagem" layoutX="144.0" layoutY="29.0" prefHeight="25.0" prefWidth="122.0" promptText="Selecione..." />
+            <JFXTextField fx:id="txtProcuraMensagem" layoutX="291.0" layoutY="29.0" prefHeight="25.0" prefWidth="283.0" promptText="Procurar Usuario" />
+            <JFXButton fx:id="btnPesquisar" buttonType="RAISED" layoutX="582.0" layoutY="29.0" text="Pesquisar" />
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="65.0" prefWidth="652.0">
+   </top>
+   <bottom>
+      <AnchorPane prefHeight="90.0" prefWidth="697.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField layoutX="49.0" layoutY="20.0" prefHeight="25.0" prefWidth="396.0" />
-            <JFXButton buttonType="RAISED" layoutX="462.0" layoutY="20.0" prefHeight="25.0" prefWidth="145.0" text="Pesquisar" />
+            <JFXButton fx:id="btnEnviar" buttonType="RAISED" layoutX="130.0" layoutY="33.0" onAction="#btnOnActionEnviar" prefHeight="30.0" prefWidth="200.0" ripplerFill="#15c915" text="Enviar" wrapText="true">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnCancelar" buttonType="RAISED" layoutX="393.0" layoutY="33.0" onAction="#btnOnActionCancelar" prefHeight="30.0" prefWidth="200.0" ripplerFill="#15c915" text="Cancelar" wrapText="true">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </JFXButton>
          </children>
       </AnchorPane>
-      <SplitPane dividerPositions="0.3032581453634085" prefHeight="160.0" prefWidth="200.0">
+   </bottom>
+   <center>
+      <SplitPane dividerPositions="0.5107913669064749" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Label layoutX="14.0" layoutY="25.0" text="Codigo Comprador :" />
-                  <Label layoutX="14.0" layoutY="62.0" text="Nome Comprador :" />
-                  <Label layoutX="165.0" layoutY="136.0" text="Mensagem :" />
-                  <Label layoutX="137.0" layoutY="25.0" text="Label" />
-                  <Label layoutX="137.0" layoutY="62.0" text="Label" />
+                  <GridPane layoutX="8.0" layoutY="144.0" prefHeight="305.0" prefWidth="327.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints minWidth="10.0" prefWidth="20.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="20.0" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="20.0" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="20.0" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Usuario" />
+                        <Label text="Catgoria" GridPane.rowIndex="2" />
+                        <Label text="Tipo" GridPane.rowIndex="4" />
+                        <Label text="Mensagem" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+                        <JFXComboBox fx:id="comboUsuario" labelFloat="true" prefHeight="25.0" prefWidth="148.0" promptText="Selecione..." GridPane.columnIndex="2" />
+                        <JFXTextArea fx:id="AreaMensagem" labelFloat="true" promptText="Digite a mensagem" GridPane.columnIndex="2" GridPane.rowIndex="6" GridPane.rowSpan="2">
+                           <font>
+                              <Font name="Arial Bold Italic" size="12.0" />
+                           </font>
+                        </JFXTextArea>
+                        <JFXComboBox fx:id="comboCategoria" labelFloat="true" prefHeight="25.0" prefWidth="148.0" promptText="Selecione..." GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <JFXComboBox fx:id="comboTipo" labelFloat="true" prefHeight="25.0" prefWidth="148.0" promptText="Selecione..." GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                     </children>
+                  </GridPane>
+                  <ImageView fitHeight="145.0" fitWidth="129.0" layoutX="105.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/mensagem.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <JFXTextArea layoutX="8.0" layoutY="14.0" prefHeight="110.0" prefWidth="350.0" />
-                  <JFXButton layoutX="385.0" layoutY="112.0" text="Enviar" />
+                  <TableView fx:id="tableMensagem" layoutX="-2.0" layoutY="-3.0" prefHeight="476.0" prefWidth="339.0">
+                    <columns>
+                      <TableColumn fx:id="colunaUsuario" prefWidth="75.0" text="Usuario" />
+                      <TableColumn fx:id="colunaCategoria" prefWidth="75.0" text="Categoria" />
+                        <TableColumn fx:id="colunaTipo" prefWidth="75.0" text="Tipo" />
+                        <TableColumn fx:id="colunaMensagem" prefWidth="75.0" text="Mensagem" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
                </children>
             </AnchorPane>
         </items>
       </SplitPane>
-      <SplitPane dividerPositions="0.3032581453634085" layoutX="10.0" layoutY="136.0" prefHeight="160.0" prefWidth="200.0">
-         <items>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-               <children>
-                  <Label layoutX="14.0" layoutY="25.0" text="Codigo Vendedor:" />
-                  <Label layoutX="14.0" layoutY="62.0" text="Nome Vendedor :" />
-                  <Label layoutX="165.0" layoutY="136.0" text="Mensagem :" />
-                  <Label layoutX="151.0" layoutY="25.0" text="Label" />
-                  <Label layoutX="151.0" layoutY="62.0" text="Label" />
-               </children>
-            </AnchorPane>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-               <children>
-                  <JFXTextArea layoutX="8.0" layoutY="14.0" prefHeight="110.0" prefWidth="350.0" />
-                  <JFXButton layoutX="385.0" layoutY="112.0" text="Enviar" />
-               </children>
-            </AnchorPane>
-         </items>
-      </SplitPane>
-   </children>
-</VBox>
+   </center>
+</BorderPane>

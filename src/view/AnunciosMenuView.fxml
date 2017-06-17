@@ -5,10 +5,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/usuariomenu.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="controller.AnunciosMenuCtr">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="800.0" stylesheets="@../css/usuariomenu.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AnunciosMenuCtr">
    <children>
-      <AnchorPane layoutX="14.0" prefHeight="92.0" prefWidth="582.0" styleClass="topPane" stylesheets="@../css/usuariomenu.css">
+      <AnchorPane prefHeight="92.0" prefWidth="800.0" styleClass="topPane" stylesheets="@../css/usuariomenu.css">
          <children>
             <Label layoutX="72.0" layoutY="21.0" text="Anuncio" textFill="#fffdfd">
                <font>
@@ -18,6 +17,7 @@
          </children>
       </AnchorPane>
       <JFXButton fx:id="btnCriarAnuncio" buttonType="RAISED" layoutX="56.0" layoutY="118.0" onAction="#btnOnActionCriarAnuncio" prefHeight="204.0" prefWidth="233.0" styleClass="topPane" text="Criar Anuncio" />
-      <JFXButton fx:id="btnListarAnuncios" buttonType="RAISED" layoutX="311.0" layoutY="118.0" prefHeight="204.0" prefWidth="233.0" styleClass="topPane" text="Listar Anuncios" />
+      <JFXButton fx:id="btnListarAnuncios" buttonType="RAISED" layoutX="305.0" layoutY="118.0" onAction="#btnOnActionListarAnuncio" prefHeight="204.0" prefWidth="233.0" styleClass="topPane" text="Listar Anuncios" />
+      <JFXButton fx:id="btnAnuncio" buttonType="RAISED" layoutX="553.0" layoutY="118.0" onAction="#btnOnActionAnuncios" prefHeight="204.0" prefWidth="233.0" styleClass="topPane" text="Anuncios" />
    </children>
 </AnchorPane>

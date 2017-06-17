@@ -100,6 +100,7 @@ public class LoginViewController implements Initializable {
                     JOptionPane.showMessageDialog(null, "Loguin efetuado com sucesso ");
                     MainAppCtr mainAppCtr = new MainAppCtr();
                     mainAppCtr.gerarTela();
+                    btnLogar.getScene().getWindow().hide();
 
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);

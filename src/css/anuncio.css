@@ -1,7 +1,23 @@
-/*
- * Empty Stylesheet file.
- */
+.root {
+     -fx-background-repeat: stretch;
+     -fx-background-size: 1600 850;
+     -fx-background-position: center center;
+}
+.button {
+    -fx-text-fill: white;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+.button:hover {
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+#btnToolbar{
+    -fx-pref-width: 80px;
+    -fx-pref-height: 80px;
+}
 
-.mainFxmlClass {
-
+.topPane{
+    -fx-background-color: #3196DE;
 }

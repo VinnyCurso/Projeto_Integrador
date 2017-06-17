@@ -30,14 +30,17 @@ public class AnuncioDao {
     public void setConnection(Connection connection) {
         this.connection = connection;
     }
+    
+    public ResultSet resultado;
 
     public boolean inserir(Anuncio anuncio) {
-        String sql = "INSERT INTO anuncio(status,valor,categoria) VALUES(?,?,?)";
+        String sql = "INSERT INTO anuncio(descricao,categoria,preco) VALUES(?,?,?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, anuncio.getStatus());
-            stmt.setFloat(2, anuncio.getValor());
-            stmt.setString(3, anuncio.getCategoria());
+            stmt.setString(1, anuncio.getDescricao());
+            stmt.setString(2, anuncio.getCategoria());
+            stmt.setFloat(3, anuncio.getValor());
+            
 
             stmt.execute();
             return true;
@@ -48,12 +51,13 @@ public class AnuncioDao {
     }
 
     public boolean alterar(Anuncio anuncio) {
-        String sql = "UPDATE anuncio SET status=?,valor=?,categoria=?  WHERE codigo=?";
+        String sql = "UPDATE anuncio SET descricao=?,categoria=?,preco=?  WHERE codigo=?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-         stmt.setString(1, anuncio.getStatus());
-            stmt.setFloat(2, anuncio.getValor());
-            stmt.setString(3, anuncio.getCategoria());
+            stmt.setString(1, anuncio.getDescricao());
+            stmt.setString(2, anuncio.getCategoria());
+            stmt.setFloat(3, anuncio.getValor());
+            
 
             stmt.execute();
             return true;
@@ -85,9 +89,9 @@ public class AnuncioDao {
             while (resultado.next()) {
                 Anuncio anuncio = new Anuncio();
                 anuncio.setCodigo(resultado.getInt("codigo"));
-                anuncio.setStatus(resultado.getString("status"));
-                anuncio.setValor(resultado.getFloat("valor"));
+                anuncio.setDescricao(resultado.getString("descricao"));
                 anuncio.setCategoria(resultado.getString("categoria"));
+                anuncio.setValor(resultado.getFloat("preco"));
 
                 retorno.add(anuncio);
             }
@@ -110,9 +114,10 @@ public class AnuncioDao {
             if (resultado.next()) {
 
                 anuncio.setCodigo(resultado.getInt("codigo"));
-                anuncio.setStatus(resultado.getString("status"));
-                anuncio.setValor(resultado.getFloat("valor"));
+                anuncio.setDescricao(resultado.getString("descricao"));
                 anuncio.setCategoria(resultado.getString("categoria"));
+                anuncio.setValor(resultado.getFloat("valor"));
+                
 
                 retorno = anuncio;
             }

@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Mensagem;
-import model.Usuario;
 
 /**
  *
@@ -33,11 +32,13 @@ public class MensagemDao {
     }
 
     public boolean inserir(Mensagem mensagem) {
-        String sql = "INSERT INTO mensagem(descricao,usuario) VALUES(?,?)";
+        String sql = "INSERT INTO mensagem(usuario,categoria,tipo,mensagem) VALUES(?,?,?,?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, mensagem.getDescricao());
-            stmt.setObject(2, mensagem.getUsuario());
+            stmt.setString(1, mensagem.getUsuario());
+            stmt.setString(2, mensagem.getCategoria());
+            stmt.setString(3, mensagem.getTipo());
+            stmt.setString(4, mensagem.getMensagem());
 
             stmt.execute();
             return true;
@@ -48,11 +49,13 @@ public class MensagemDao {
     }
 
     public boolean alterar(Mensagem mensagem) {
-        String sql = "UPDATE mensagem SET descricao=?,usuario=?  WHERE codigo=?";
+        String sql = "UPDATE mensagem SET usuario=?,categoria=?,tipo=?,mensagem=?  WHERE codigo=?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, mensagem.getDescricao());
-            stmt.setObject(2, mensagem.getUsuario());
+          stmt.setString(1, mensagem.getUsuario());
+            stmt.setString(2, mensagem.getCategoria());
+            stmt.setString(3, mensagem.getTipo());
+            stmt.setString(4, mensagem.getMensagem());
 
             stmt.execute();
             return true;
@@ -84,9 +87,11 @@ public class MensagemDao {
             while (resultado.next()) {
                 Mensagem mensagem = new Mensagem();
                 mensagem.setCodigo(resultado.getInt("codigo"));
-                mensagem.setDescricao(resultado.getString("descricao"));
-                mensagem.setUsuario((Usuario) resultado.getObject("usuario"));
-
+                mensagem.setUsuario(resultado.getString("usuario"));
+                mensagem.setCategoria(resultado.getString("categoria"));
+                mensagem.setTipo(resultado.getString("tipo"));
+                mensagem.setMensagem(resultado.getString("mensagem"));
+      
                 retorno.add(mensagem);
             }
         } catch (SQLException ex) {
@@ -108,8 +113,10 @@ public class MensagemDao {
             if (resultado.next()) {
 
                 mensagem.setCodigo(resultado.getInt("codigo"));
-                mensagem.setDescricao(resultado.getString("descricao"));
-                mensagem.setUsuario((Usuario) resultado.getObject("usuario"));
+                mensagem.setUsuario(resultado.getString("usuario"));
+                mensagem.setCategoria(resultado.getString("categoria"));
+                mensagem.setTipo(resultado.getString("tipo"));
+                mensagem.setMensagem(resultado.getString("mensagem"));
 
                 retorno = mensagem;
             }
