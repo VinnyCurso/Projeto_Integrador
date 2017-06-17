@@ -198,7 +198,7 @@ public class UsuarioAlterarExcluirCtr implements Initializable {
         public void btnOnActionRemover() throws IOException {
 
      Usuario user = tableClientes.getSelectionModel().getSelectedItem();
-     usuarioDao.remover(usuario);
+     usuarioDao.remover(user);
      JOptionPane.showMessageDialog(null, "Cadastro excluido com sucesso .");
      LimparTela();
      }
