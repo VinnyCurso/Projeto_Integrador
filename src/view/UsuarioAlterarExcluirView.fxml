@@ -22,14 +22,14 @@
             <Label layoutX="34.0" layoutY="31.0" text="Filtro" />
             <JFXComboBox fx:id="comboFiltroCliente" layoutX="80.0" layoutY="27.0" prefHeight="25.0" prefWidth="122.0" promptText="Selecione..." />
             <JFXTextField fx:id="txtProcuraCliente" layoutX="214.0" layoutY="27.0" prefHeight="25.0" prefWidth="283.0" promptText="Procurar Usuario" />
-            <JFXButton fx:id="btnPesquisar" buttonType="RAISED" layoutX="514.0" layoutY="27.0" text="Pesquisar" />
+            <JFXButton fx:id="btnPesquisar" buttonType="RAISED" layoutX="514.0" layoutY="27.0" onAction="#btnOnActionPesquisar" text="Pesquisar" />
          </children>
       </AnchorPane>
    </top>
    <bottom>
       <AnchorPane prefHeight="58.0" prefWidth="600.0" styleClass="root" BorderPane.alignment="CENTER">
          <children>
-            <JFXButton fx:id="btnAlterar" buttonType="RAISED" layoutX="134.0" layoutY="14.0" prefHeight="30.0" prefWidth="100.0" styleClass="topPane" text="Altetar" />
+            <JFXButton fx:id="btnAlterar" buttonType="RAISED" layoutX="134.0" layoutY="14.0" onAction="#btnOnActionAlterar" prefHeight="30.0" prefWidth="100.0" styleClass="topPane" text="Altetar" />
             <JFXButton fx:id="btnExcluir" buttonType="RAISED" layoutX="306.0" layoutY="14.0" onAction="#btnOnActionRemover" prefHeight="30.0" prefWidth="100.0" styleClass="topPane" text="Excluir" />
             <JFXButton fx:id="btnCancelar" buttonType="RAISED" layoutX="498.0" layoutY="14.0" onAction="#btnOnActionCancelar" prefHeight="30.0" prefWidth="100.0" styleClass="topPane" text="Cancelar" />
          </children>
@@ -80,7 +80,7 @@
                     </rowConstraints>
                      <children>
                         <Label text="Codigo" />
-                        <JFXTextField fx:id="txtCodigo" labelFloat="true" GridPane.columnIndex="2" />
+                        <JFXTextField fx:id="txtCodigo" disable="true" labelFloat="true" GridPane.columnIndex="2" />
                         <Label text="Nome" GridPane.rowIndex="2" />
                         <Label text="Sobrenome" GridPane.rowIndex="4" />
                         <Label text="Telefone" GridPane.rowIndex="6" />

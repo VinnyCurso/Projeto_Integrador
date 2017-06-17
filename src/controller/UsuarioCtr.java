@@ -134,13 +134,5 @@ public class UsuarioCtr implements Initializable {
          txtSenha.setText("");
          
      }
-
-    @FXML
-    private void btnOnActionAlterar(ActionEvent event) {
-    }
-
-    @FXML
-    private void btnOnActionExcluir(ActionEvent event) {
-    }
     
 }

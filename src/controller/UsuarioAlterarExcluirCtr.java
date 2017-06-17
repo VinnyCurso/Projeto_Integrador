@@ -15,6 +15,7 @@ import database.DatabaseFactory;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -41,7 +42,7 @@ import model.Usuario;
  * @author vinicius caetano
  */
 public class UsuarioAlterarExcluirCtr implements Initializable {
-    
+
     @FXML
     private JFXComboBox<String> comboFiltroCliente;
 
@@ -89,19 +90,17 @@ public class UsuarioAlterarExcluirCtr implements Initializable {
 
     @FXML
     private JFXPasswordField txtSenha;
-    
-    @FXML private ObservableList<String> ListaobservavelFitro;
-    
+
+    @FXML
+    private ObservableList<String> ListaobservavelFitro;
+
     //tabela
-    
     private List<Usuario> ListaUsuario;
     private ObservableList<Usuario> ObservableListaUsuario;
-    
+
     private Usuario usuario;
-    
-    
-     //Atritutos para manipulação banco de dados
-    
+
+    //Atritutos para manipulação banco de dados
     private final Database database = DatabaseFactory.getDatabase("postgresql");
     private final Connection connection = database.conectar();
     private final UsuarioDao usuarioDao = new UsuarioDao();
@@ -114,22 +113,25 @@ public class UsuarioAlterarExcluirCtr implements Initializable {
         usuarioDao.setConnection(connection);
         usuario = new Usuario();
         CarregarComboFiltro();
-        CarregarTabelaUsuario();
-        
+        try {
+            CarregarTabelaUsuario(usuario);
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioAlterarExcluirCtr.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         tableClientes.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
-            try {
-                selecionarItemTabela(newValue);
-            } catch (IOException ex) {
-                Logger.getLogger(UsuarioAlterarExcluirCtr.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
-               
-    } 
-    
-        //Evento Chamar a tela 
-    
-        public void gerarTela() throws IOException {
+                    try {
+                        selecionarItemTabela(newValue);
+                    } catch (IOException ex) {
+                        Logger.getLogger(UsuarioAlterarExcluirCtr.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
+
+    }
+
+    //Evento Chamar a tela 
+    public void gerarTela() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/UsuarioAlterarExcluirView.fxml"));
 
         Stage dialogStage = new Stage();
@@ -139,46 +141,46 @@ public class UsuarioAlterarExcluirCtr implements Initializable {
         dialogStage.setScene(scene);
         dialogStage.showAndWait();
     }
-        
-         private void preencherTela(Usuario usuario) throws Exception  {
+
+    private void preencherTela(Usuario usuario) throws Exception {
 
         if (usuario.getCodigo() == 0) {
             throw new Exception("Cliente não encontrado!");
         }
-            txtNome.setText(""+usuario.getNome());
-            txtSobrenome.setText(""+usuario.getSobrenome());
-            txtTelefone.setText(""+usuario.getTelefone());
-            txtEmail.setText(""+usuario.getEmail());            
-            txtSenha.setText(""+usuario.getSenha());       
-            
+        txtNome.setText("" + usuario.getNome());
+        txtSobrenome.setText("" + usuario.getSobrenome());
+        txtTelefone.setText("" + usuario.getTelefone());
+        txtEmail.setText("" + usuario.getEmail());
+        txtSenha.setText("" + usuario.getSenha());
+
     }
-         
-          public void CarregarComboFiltro(){
+
+    public void CarregarComboFiltro() {
         List<String> listaFiltro = new ArrayList();
-        String nome[] = {"Nome","Sobrenome","Codigo","email",};
-        String[] a = new String[nome.length];       
-        for(int i =0; i< nome.length;i++){
-           a[i] = new String(nome[i]); 
-           listaFiltro.add(a[i]);
-        }    
-        ListaobservavelFitro = FXCollections.observableArrayList(listaFiltro);     
+        String nome[] = {"Nome", "Sobrenome", "Codigo", "email",};
+        String[] a = new String[nome.length];
+        for (int i = 0; i < nome.length; i++) {
+            a[i] = new String(nome[i]);
+            listaFiltro.add(a[i]);
+        }
+        ListaobservavelFitro = FXCollections.observableArrayList(listaFiltro);
         comboFiltroCliente.setItems(ListaobservavelFitro);
     }
-          
-           public void CarregarTabelaUsuario(){
-               
-               colunaCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
-               colunaUsuario.setCellValueFactory(new PropertyValueFactory<>("nome"));
-               colunaEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-               
-               ListaUsuario = usuarioDao.listar();
-               
-               ObservableListaUsuario = FXCollections.observableArrayList(ListaUsuario);
-               tableClientes.setItems(ObservableListaUsuario);
-  
+
+    public void CarregarTabelaUsuario(Usuario parametro) throws SQLException {
+
+        colunaCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
+        colunaUsuario.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        colunaEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+
+        ListaUsuario = usuarioDao.listar(parametro.getNome());
+
+        ObservableListaUsuario = FXCollections.observableArrayList(ListaUsuario);
+        tableClientes.setItems(ObservableListaUsuario);
+
     }
-           
-     public void selecionarItemTabela(Usuario usuario) throws IOException {
+
+    public void selecionarItemTabela(Usuario usuario) throws IOException {
 
         if (this.usuario != null) {
             txtCodigo.setText(String.valueOf(usuario.getCodigo()));
@@ -189,22 +191,37 @@ public class UsuarioAlterarExcluirCtr implements Initializable {
             txtSenha.setText(usuario.getSenha());
         } else {
 
-      LimparTela();
+            LimparTela();
         }
 
     }
+
+    @FXML
+    public void btnOnActionAlterar() throws IOException {
+        Usuario user = new Usuario();
         
-     @FXML
-        public void btnOnActionRemover() throws IOException {
+        user.setCodigo(Long.parseLong(txtCodigo.getText()));
+        user.setNome(txtNome.getText());
+        user.setSobrenome(txtSobrenome.getText());
+        user.setTelefone(txtTelefone.getText());
+        user.setEmail(txtEmail.getText());
+        user.setSenha(txtSenha.getText());
+        
+        usuarioDao.alterar(user);
+        
+        JOptionPane.showMessageDialog(null, "Cadastro alterado com sucesso .");
+        LimparTela();
+    }
 
-     Usuario user = tableClientes.getSelectionModel().getSelectedItem();
-     usuarioDao.remover(user);
-     JOptionPane.showMessageDialog(null, "Cadastro excluido com sucesso .");
-     LimparTela();
-     }
+    @FXML
+    public void btnOnActionRemover() throws IOException {
 
-    
-     
+        Usuario user = tableClientes.getSelectionModel().getSelectedItem();
+        usuarioDao.remover(user);
+        JOptionPane.showMessageDialog(null, "Cadastro excluido com sucesso .");
+        LimparTela();
+    }
+
     @FXML
     public void btnOnActionCancelar(ActionEvent event) throws IOException {
 
@@ -213,16 +230,28 @@ public class UsuarioAlterarExcluirCtr implements Initializable {
 
     }
     
-      @FXML
+    @FXML
+    public void btnOnActionPesquisar() throws IOException, SQLException {
+        Usuario parametro = new Usuario();
+        
+        if (!txtProcuraCliente.getText().isEmpty()) {
+            parametro.setNome(txtProcuraCliente.getText());
+        }
+
+        CarregarTabelaUsuario(parametro);
+    }
+     
+
+    @FXML
     public void LimparTela() throws IOException {
 
-          txtCodigo.setText("");
-          txtNome.setText("");
-          txtSobrenome.setText("");
-          txtTelefone.setText("");
-          txtEmail.setText("");
-          txtSenha.setText("");
+        txtCodigo.setText("");
+        txtNome.setText("");
+        txtSobrenome.setText("");
+        txtTelefone.setText("");
+        txtEmail.setText("");
+        txtSenha.setText("");
 
     }
-    
+
 }

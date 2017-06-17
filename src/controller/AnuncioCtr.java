@@ -139,7 +139,7 @@ public class AnuncioCtr implements Initializable {
         JOptionPane.showMessageDialog(null, "Segue a informação do Anuncio Anterior ");
 
         try {
-            conecta.executaSQL("select * from anuncio");
+            conecta.executaSQL("select * from anuncio where codigo=?");
             conecta.resul.previous();
 
             labelCodigo.setText(String.valueOf(conecta.resul.getInt("codigo")));

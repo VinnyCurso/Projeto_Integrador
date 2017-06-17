@@ -57,6 +57,7 @@ public class UsuarioDao {
             stmt.setString(2, usuario.getSobrenome());
             stmt.setString(3, usuario.getTelefone());
             stmt.setString(4, usuario.getEmail());
+            stmt.setLong(5, usuario.getCodigo());
 
             stmt.execute();
             return true;
@@ -79,15 +80,35 @@ public class UsuarioDao {
         }
     }
 
-    public List<Usuario> listar() {
-        String sql = "select * from usuario";
+    public List<Usuario> listar(String nome) throws SQLException {
         List<Usuario> retorno = new ArrayList<>();
+
+        String sql = "select * from usuario where 1=1";
+
+        if (nome != null) {
+            if (!nome.isEmpty()) {
+                sql += " and nome like ? ";
+            }
+        }
+
+        sql += "ORDER BY nome";
+
+        PreparedStatement prd = connection.prepareStatement(sql);
+
+        if (nome != null) {
+            if (!nome.isEmpty()) {
+                prd.setString(1, "%" + nome + "%");
+            }
+        }
+
+        ResultSet rs = prd.executeQuery();
+
         try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            ResultSet resultado = stmt.executeQuery();
+
+            ResultSet resultado = prd.executeQuery();
             while (resultado.next()) {
                 Usuario usuario = new Usuario();
-             usuario.setCodigo(resultado.getInt("codigo"));
+                usuario.setCodigo(resultado.getInt("codigo"));
                 usuario.setNome(resultado.getString("nome"));
                 usuario.setSobrenome(resultado.getString("sobrenome"));
                 usuario.setTelefone(resultado.getString("telefone"));
