@@ -20,6 +20,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -42,36 +44,18 @@ import model.Anuncio;
  */
 public class ListaAnuncioViewCtr implements Initializable {
     
+    @FXML private JFXComboBox<String> comboFiltroAnuncio;
+    @FXML private JFXTextField txtProcuraAnuncio;
+    @FXML private JFXButton btnPesquisar;
+    @FXML private TableView<Anuncio> tableView;
+    @FXML private TableColumn<Anuncio, String> colunacodigo;
+    @FXML private TableColumn<Anuncio, String> colunaTitulo;
+    @FXML private TableColumn<Anuncio, String> colunaDescricao;
+    @FXML private TableColumn<Anuncio, String> colunacategoria;
+    @FXML private TableColumn<Anuncio, Float> colunapreco;
+    @FXML private ObservableList<String> ListaobservavelFiltro;
     
-    @FXML
-    private JFXComboBox<String> comboFiltroAnuncio;
-
-    @FXML
-    private JFXTextField txtProcuraAnuncio;
-
-    @FXML
-    private JFXButton btnPesquisar;
-
-    @FXML
-    private TableView<Anuncio> tableView;
-
-    @FXML
-    private TableColumn<Anuncio, String> colunacodigo;
-
-    @FXML
-    private TableColumn<Anuncio, String> colunaDescricao;
-
-    @FXML
-    private TableColumn<Anuncio, String> colunacategoria;
-
-    @FXML
-    private TableColumn<Anuncio, String> colunapreco;
-    
-    @FXML
-    private ObservableList<String> ListaobservavelFiltro;
-    
-    private Anuncio anuncio;
-    
+    private Anuncio anuncio;    
     private Stage stage;
     
      //tabela
@@ -97,7 +81,11 @@ public class ListaAnuncioViewCtr implements Initializable {
         anuncioDao.setConnection(connection);
         anuncio = new Anuncio();
         CarregarComboFiltro();
-        CarregarTabelaAnuncio();
+        try {
+            CarregarTabelaAnuncio(anuncio);
+        } catch (SQLException ex) {
+            Logger.getLogger(ListaAnuncioViewCtr.class.getName()).log(Level.SEVERE, null, ex);
+        }
     } 
     
     //Evento Chamar a tela 
@@ -125,35 +113,29 @@ public class ListaAnuncioViewCtr implements Initializable {
         comboFiltroAnuncio.setItems(ListaobservavelFiltro);
     }
           
-          public void CarregarTabelaAnuncio(){
-               
+          public void CarregarTabelaAnuncio(Anuncio parametro) throws SQLException{
+              
                colunacodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
+               colunaTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
                colunaDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
                colunacategoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
                colunapreco.setCellValueFactory(new PropertyValueFactory<>("preco"));
                
-               ListaAnuncio = anuncioDao.listar();
+               ListaAnuncio = anuncioDao.listar(parametro.getTitulo());
                
                ObservableListaAnuncio = FXCollections.observableArrayList(ListaAnuncio);
-               tableView.setItems(ObservableListaAnuncio);
-  
-    }
-    
-    
-    
+               tableView.setItems(ObservableListaAnuncio);  
+    }    
      //Botoes
-          
-
-    
+           
      @FXML
-    public void btnOnActionPesquisar() throws IOException {
+    public void btnOnActionPesquisar() throws IOException, SQLException  {
+        Anuncio parametro = new Anuncio();
 
-        JOptionPane.showMessageDialog(null, "Qual dado voce deseja consultar ? ");
+        if (!txtProcuraAnuncio.getText().isEmpty()) {
+            parametro.setTitulo(txtProcuraAnuncio.getText());
+        }
 
-    }
-    
-    
-    
-    
-    
+        CarregarTabelaAnuncio(parametro);
+    }    
 }

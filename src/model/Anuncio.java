@@ -12,6 +12,7 @@ package model;
 public class Anuncio {
     
     private int codigo;
+    private String titulo;
     private String descricao;
     private String categoria;
     private float valor;
@@ -66,6 +67,14 @@ public class Anuncio {
 
     public void setProximo(Anuncio proximo) {
         this.proximo = proximo;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
     
     

@@ -23,10 +23,11 @@
    <center>
       <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="colunacodigo" prefWidth="75.0" text="Codigo" />
-          <TableColumn fx:id="colunaDescricao" prefWidth="75.0" text="Descricao" />
+          <TableColumn fx:id="colunacodigo" maxWidth="3000.0" prefWidth="30.0" text="Código" />
+          <TableColumn fx:id="colunaTitulo" maxWidth="15000.0" prefWidth="183.0" text="Título" />
+            <TableColumn fx:id="colunaDescricao" prefWidth="75.0" text="Descrição" />
             <TableColumn fx:id="colunacategoria" prefWidth="75.0" text="Categoria" />
-            <TableColumn fx:id="colunapreco" prefWidth="75.0" text="Preco" />
+            <TableColumn fx:id="colunapreco" prefWidth="75.0" text="Preço" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

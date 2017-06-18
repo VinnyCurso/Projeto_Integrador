@@ -52,36 +52,19 @@ import model.Imagem;
  * @author vinicius caetano
  */
 public class CriarAnuncioCtr implements Initializable {
-
-    @FXML
-    private JFXTextArea txtareaDescricao;
-
-    @FXML
-    private JFXComboBox<String> comboCategoria;
-
-    @FXML
-    private Label inserirImagem;
-
-    @FXML
-    private Hyperlink carregarImagem;
-
-    @FXML
-    private JFXButton btnSalvar;
-
-    @FXML
-    private JFXButton btnCancelar;
-
-    @FXML
-    private JFXTextField txtPreco;
-
-    @FXML
-    private ObservableList<String> ListaobservavelCategoria;
-
-    @FXML
-    private ImageView imagens;
-
+    
+    @FXML private JFXTextField txtTitulo;
+    @FXML private JFXTextArea txtareaDescricao;
+    @FXML private JFXComboBox<String> comboCategoria;
+    @FXML private Label inserirImagem;
+    @FXML private Hyperlink carregarImagem;
+    @FXML private JFXButton btnSalvar;
+    @FXML private JFXButton btnCancelar;
+    @FXML private JFXTextField txtPreco;
+    @FXML private ObservableList<String> ListaobservavelCategoria;
+    @FXML private ImageView imagens;
+    
     private Anuncio anuncio;
-
     BufferedImage imagem;
 
     private final Database database = DatabaseFactory.getDatabase("postgresql");
@@ -174,7 +157,7 @@ public class CriarAnuncioCtr implements Initializable {
     public void CarregarComboCategoria() {
 
         List<String> listaCategoria = new ArrayList();
-        String nome[] = {"Computadores", "Celulares", "Modens",};
+        String nome[] = {"Computadores", "Celulares", "Produtos e outros",};
         String[] a = new String[nome.length];
         for (int i = 0; i < nome.length; i++) {
             a[i] = new String(nome[i]);
@@ -185,7 +168,7 @@ public class CriarAnuncioCtr implements Initializable {
     }
 
     private void LimparTela() {
-
+        txtTitulo.setText("");
         txtareaDescricao.setText("");
         comboCategoria.setValue("");
         txtPreco.setText("");
@@ -197,10 +180,11 @@ public class CriarAnuncioCtr implements Initializable {
 
         if (anuncio != null) {
             Anuncio anuncios = new Anuncio();
-
+            
+            anuncios.setTitulo(txtTitulo.getText());
             anuncios.setDescricao(txtareaDescricao.getText());
             anuncios.setCategoria(comboCategoria.getValue());
-            anuncios.setValor((float) txtPreco.getLength());
+            anuncios.setValor(Float.parseFloat(txtPreco.getText()));
 
             anuncioDao.inserir(anuncios);
             JOptionPane.showMessageDialog(null, "Anuncio Salvo com sucesso ");

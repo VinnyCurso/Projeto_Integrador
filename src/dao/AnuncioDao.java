@@ -34,12 +34,13 @@ public class AnuncioDao {
     public ResultSet resultado;
 
     public boolean inserir(Anuncio anuncio) {
-        String sql = "INSERT INTO anuncio(descricao,categoria,preco) VALUES(?,?,?)";
+        String sql = "INSERT INTO anuncio(descricao,categoria,preco,titulo) VALUES(?,?,?,?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, anuncio.getDescricao());
             stmt.setString(2, anuncio.getCategoria());
             stmt.setDouble(3, anuncio.getValor());
+            stmt.setString(4, anuncio.getTitulo());
             
             stmt.execute();
             return true;
@@ -50,12 +51,14 @@ public class AnuncioDao {
     }
 
     public boolean alterar(Anuncio anuncio) {
-        String sql = "UPDATE anuncio SET descricao=?,categoria=?,preco=?  WHERE codigo=?";
+        String sql = "UPDATE anuncio SET descricao=?,categoria=?,preco=?,titulo=?  WHERE codigo=?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, anuncio.getDescricao());
             stmt.setString(2, anuncio.getCategoria());
             stmt.setDouble(3, anuncio.getValor());
+            stmt.setString(4, anuncio.getTitulo());
+            stmt.setLong(5,anuncio.getCodigo());
             
 
             stmt.execute();
@@ -79,18 +82,40 @@ public class AnuncioDao {
         }
     }
 
-    public List<Anuncio> listar() {
-        String sql = "select * from anuncio";
+    public List<Anuncio> listar(String nome) throws SQLException {
         List<Anuncio> retorno = new ArrayList<>();
+        
+        String sql = "select * from anuncio"
+                   + " WHERE 1=1";
+        
+        if (nome != null) {
+            if (!nome.isEmpty()) {
+                sql += " and titulo like ? ";
+            }
+        }
+
+        sql += "ORDER BY titulo";
+        
+        PreparedStatement prd = connection.prepareStatement(sql);
+        
+        if (nome != null) {
+            if (!nome.isEmpty()) {
+                prd.setString(1, "%" + nome + "%");
+            }
+        }
+
+        ResultSet rs = prd.executeQuery();
+
+
         try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            ResultSet resultado = stmt.executeQuery();
+            ResultSet resultado = prd.executeQuery();
             while (resultado.next()) {
                 Anuncio anuncio = new Anuncio();
                 anuncio.setCodigo(resultado.getInt("codigo"));
                 anuncio.setDescricao(resultado.getString("descricao"));
                 anuncio.setCategoria(resultado.getString("categoria"));
                 anuncio.setValor(resultado.getFloat("preco"));
+                anuncio.setTitulo(resultado.getString("titulo"));
 
                 retorno.add(anuncio);
             }
@@ -116,6 +141,7 @@ public class AnuncioDao {
                 anuncio.setDescricao(resultado.getString("descricao"));
                 anuncio.setCategoria(resultado.getString("categoria"));
                 anuncio.setValor(resultado.getFloat("valor"));
+                anuncio.setTitulo(resultado.getString("titulo"));
                 
 
                 retorno = anuncio;

@@ -40,38 +40,17 @@ import model.Imagem;
  */
 public class AnuncioCtr implements Initializable {
 
-    @FXML
-    private JFXButton btnPesquisar;
-
-    @FXML
-    private ImageView imagemview;
-
-    @FXML
-    private Label labelDescricao;
-
-    @FXML
-    private Label labelPreco;
-
-    @FXML
-    private Label labelCodigo;
-
-    @FXML
-    private JFXButton btnAnterior;
-
-    @FXML
-    private JFXButton btnProximo;
-
-    @FXML
-    private JFXButton btnListaAnuncio;
-
-    @FXML
-    private JFXButton btnDetalhesProduto;
-
-    @FXML
-    private JFXButton btnComprar;
-
-    @FXML
-    private JFXButton btnCancelar;
+    @FXML private JFXButton btnPesquisar;
+    @FXML private ImageView imagemview;
+    @FXML private Label labelDescricao;
+    @FXML private Label labelPreco;
+    @FXML private Label labelCodigo;
+    @FXML private JFXButton btnAnterior;
+    @FXML private JFXButton btnProximo;
+    @FXML private JFXButton btnListaAnuncio;
+    @FXML private JFXButton btnDetalhesProduto;
+    @FXML private JFXButton btnComprar;
+    @FXML private JFXButton btnCancelar;
 
     private Anuncio anuncio;
     private Stage stage;
