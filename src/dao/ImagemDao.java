@@ -33,25 +33,31 @@ public class ImagemDao {
         this.connection = connection;
     }
 
-    public boolean inserir(Imagem imagem) {
-        String sql = "INSERT INTO imagem(imagem) VALUES(?)";
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setBlob(1, (Blob) imagem.getImagem());
-
+    public boolean inserir(Imagem imagem) throws SQLException {
+       Boolean retorno = false;
+        String sql = "INSERT INTO imagem (imagem) values (?)";
+        
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        try
+        {
+            stmt.setBytes(1, imagem.getImagem());
             stmt.executeUpdate();
-            return true;
-        } catch (SQLException ex) {
-            Logger.getLogger(ImagemDao.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
+            retorno = true;
+            
         }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        
+        return retorno;
     }
 
     public boolean alterar(Imagem imagem) {
         String sql = "UPDATE imagem SET imagem=?  WHERE codigo=?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setBlob(1, (Blob) imagem.getImagem());
+//            stmt.setBlob(1, (Blob) imagem.getImagem());
 
             stmt.execute();
             return true;
@@ -83,7 +89,7 @@ public class ImagemDao {
             while (resultado.next()) {
                 Imagem imagem = new Imagem();
                 imagem.setCodigo(resultado.getInt("codigo"));
-                imagem.setImagem((FileReader) resultado.getBlob("imagem"));
+//                imagem.setImagem((FileReader) resultado.getBlob("imagem"));
 
                 retorno.add(imagem);
             }
@@ -106,7 +112,7 @@ public class ImagemDao {
             if (resultado.next()) {
 
                 imagem.setCodigo(resultado.getInt("codigo"));
-               imagem.setImagem((FileReader) resultado.getBlob("imagem"));
+//               imagem.setImagem((FileReader) resultado.getBlob("imagem"));
 
                 retorno = imagem;
             }

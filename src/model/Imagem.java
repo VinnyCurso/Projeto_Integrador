@@ -14,12 +14,12 @@ import java.io.FileReader;
 public class Imagem {
     
     private int codigo;
-    private FileReader imagem;
+    private byte[] imagem;
 
     public Imagem() {
     }
 
-    public Imagem(int codigo, FileReader imagem) {
+    public Imagem(int codigo, byte[] imagem) {
         this.codigo = codigo;
         this.imagem = imagem;
     }
@@ -32,12 +32,13 @@ public class Imagem {
         this.codigo = codigo;
     }
 
-    public FileReader getImagem() {
+    public byte[] getImagem() {
         return imagem;
     }
 
-    public void setImagem(FileReader imagem) {
+    public void setImagem(byte[] imagem) {
         this.imagem = imagem;
     }
-  
+    
+    
 }

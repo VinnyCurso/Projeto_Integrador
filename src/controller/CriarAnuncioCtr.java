@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import dao.AnuncioDao;
+import dao.ImagemDao;
 import database.Database;
 import database.DatabaseFactory;
 import database.ManipularImagem;
@@ -42,6 +43,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import model.Anuncio;
+import model.Imagem;
 //import model.StatImage;
 
 /**
@@ -114,12 +116,14 @@ public class CriarAnuncioCtr implements Initializable {
 //        start.NStart();
     }
 
-    public void CarregarImagens() {
+    public void CarregarImagens() throws Exception {
+        
         JFileChooser fc = new JFileChooser();
         int res = fc.showOpenDialog(null);
 
         if (res == JFileChooser.APPROVE_OPTION) {
             File arquivo = fc.getSelectedFile();
+            
 
             try {
                 imagem = ManipularImagem.setImagemDimensao(arquivo.getAbsolutePath(), 160, 160);
@@ -136,16 +140,35 @@ public class CriarAnuncioCtr implements Initializable {
     }
 
     public void EnvairImagen() throws Exception {
-
-        try {
-            // TODO add your handling code here:
-            String caminho = getClass().getResource("/image/").toString().substring(5);
-            File outputfile = new File(caminho + "image.jpg");
-            ImageIO.write(imagem, "jpg", outputfile);
-            JOptionPane.showMessageDialog(null, "Imagem enviada com sucesso");
-        } catch (IOException ex) {
-            Logger.getLogger(CriarAnuncioCtr.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//
+//        try {
+//            // TODO add your handling code here:
+//            String caminho = getClass().getResource("/image/").toString().substring(5);
+//            File outputfile = new File(caminho + "image.jpg");
+//            ImageIO.write(imagem, "jpg", outputfile);
+//            JOptionPane.showMessageDialog(null, "Imagem enviada com sucesso");
+//        } catch (IOException ex) {
+//            Logger.getLogger(CriarAnuncioCtr.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+                try {
+                Imagem obj = new Imagem();
+             obj.setImagem(ManipularImagem.getImgBytes(imagem));
+             ImagemDao dao = new ImagemDao();
+             Boolean foi = dao.inserir(obj);
+             if(foi)
+             {
+                 JOptionPane.showMessageDialog(null, "Imagem enviada com sucesso");
+         
+             }
+             else
+             {
+                JOptionPane.showMessageDialog(null, "Imagem não enviada");
+         
+             }
+             
+             } catch (Exception ex) {
+             Logger.getLogger(ImagemDao.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }
 
     public void CarregarComboCategoria() {
@@ -173,13 +196,13 @@ public class CriarAnuncioCtr implements Initializable {
     public void btnOnActionSalvar() throws IOException, SQLException {
 
         if (anuncio != null) {
-            Anuncio anum = new Anuncio();
+            Anuncio anuncios = new Anuncio();
 
-            anum.setCategoria(txtareaDescricao.getText());
-            anum.setCategoria(comboCategoria.getValue());
-            anum.setValor((float) txtPreco.getBaselineOffset());
+            anuncios.setDescricao(txtareaDescricao.getText());
+            anuncios.setCategoria(comboCategoria.getValue());
+            anuncios.setValor((float) txtPreco.getLength());
 
-            anuncioDao.inserir(anum);
+            anuncioDao.inserir(anuncios);
             JOptionPane.showMessageDialog(null, "Anuncio Salvo com sucesso ");
             LimparTela();
         } else {
@@ -197,5 +220,8 @@ public class CriarAnuncioCtr implements Initializable {
         stage.close();
 
     }
+    
+    
+    
 
 }

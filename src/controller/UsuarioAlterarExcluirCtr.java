@@ -199,16 +199,16 @@ public class UsuarioAlterarExcluirCtr implements Initializable {
     @FXML
     public void btnOnActionAlterar() throws IOException {
         Usuario user = new Usuario();
-        
+
         user.setCodigo(Long.parseLong(txtCodigo.getText()));
         user.setNome(txtNome.getText());
         user.setSobrenome(txtSobrenome.getText());
         user.setTelefone(txtTelefone.getText());
         user.setEmail(txtEmail.getText());
         user.setSenha(txtSenha.getText());
-        
+
         usuarioDao.alterar(user);
-        
+
         JOptionPane.showMessageDialog(null, "Cadastro alterado com sucesso .");
         LimparTela();
     }
@@ -229,18 +229,17 @@ public class UsuarioAlterarExcluirCtr implements Initializable {
         stage.close();
 
     }
-    
+
     @FXML
     public void btnOnActionPesquisar() throws IOException, SQLException {
         Usuario parametro = new Usuario();
-        
+
         if (!txtProcuraCliente.getText().isEmpty()) {
             parametro.setNome(txtProcuraCliente.getText());
         }
 
         CarregarTabelaUsuario(parametro);
     }
-     
 
     @FXML
     public void LimparTela() throws IOException {

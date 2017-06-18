@@ -78,14 +78,9 @@ public class LoginViewController implements Initializable {
     @FXML
     public void btnOnActionLogar() throws IOException {
 
-        if (acesso != null) {
-            Acesso acesso = new Acesso();
+        
 
-            acesso.setUsuario(txtUsuario.getText());
-            acesso.setSenha(txtSenha.getText());
-            acessoDao.inserir(acesso);
-
-            String sql = "select * from login where usuario = ? and senha = ?"; //Comando do banco de dados
+            String sql = "select * from usuario where email = ? and senha = ?"; //Comando do banco de dados
 
             try {
 
@@ -111,6 +106,13 @@ public class LoginViewController implements Initializable {
             } catch (SQLException error) {
                 JOptionPane.showMessageDialog(null, error);
             }
+            
+            if (acesso != null) {
+            Acesso acesso = new Acesso();
+
+            acesso.setUsuario(txtUsuario.getText());
+            acesso.setSenha(txtSenha.getText());
+            acessoDao.inserir(acesso);
 
         }
 

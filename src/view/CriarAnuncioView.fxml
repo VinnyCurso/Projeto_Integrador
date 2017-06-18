@@ -44,7 +44,10 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Descricao" GridPane.columnIndex="1" />
+            <Label text="Descricao" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets bottom="15.0" />
+               </GridPane.margin></Label>
             <JFXTextArea fx:id="txtareaDescricao" labelFloat="true" prefHeight="68.0" prefWidth="519.0" promptText="Coloque aqui a descrição do produto" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <JFXComboBox fx:id="comboCategoria" labelFloat="true" prefHeight="25.0" prefWidth="221.0" promptText="Categoria" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label fx:id="inserirImagem" text="Inserir Imagem" GridPane.columnIndex="1" GridPane.rowIndex="5">
@@ -52,7 +55,7 @@
                   <Insets bottom="100.0" left="10.0" />
                </GridPane.margin>
             </Label>
-            <Hyperlink fx:id="carregarImagem" text="Carregar Imagem" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <Hyperlink fx:id="carregarImagem" onAction="#CarregarImagens" text="Carregar Imagem" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets left="55.0" top="100.0" />
                </GridPane.margin>

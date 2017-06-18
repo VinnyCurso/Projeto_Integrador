@@ -39,9 +39,8 @@ public class AnuncioDao {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, anuncio.getDescricao());
             stmt.setString(2, anuncio.getCategoria());
-            stmt.setFloat(3, anuncio.getValor());
+            stmt.setDouble(3, anuncio.getValor());
             
-
             stmt.execute();
             return true;
         } catch (SQLException ex) {
@@ -56,7 +55,7 @@ public class AnuncioDao {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, anuncio.getDescricao());
             stmt.setString(2, anuncio.getCategoria());
-            stmt.setFloat(3, anuncio.getValor());
+            stmt.setDouble(3, anuncio.getValor());
             
 
             stmt.execute();

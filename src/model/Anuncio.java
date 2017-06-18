@@ -16,7 +16,6 @@ public class Anuncio {
     private String categoria;
     private float valor;
     
-    
      private Anuncio proximo;
 
     public Anuncio() {

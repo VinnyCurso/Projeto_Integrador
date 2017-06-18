@@ -33,13 +33,14 @@ public class UsuarioDao {
     }
 
     public boolean inserir(Usuario usuario) {
-        String sql = "INSERT INTO usuario(nome,sobrenome,telefone,email) VALUES(?,?,?,?)";
+        String sql = "INSERT INTO usuario(nome,sobrenome,telefone,email,senha) VALUES(?,?,?,?,?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, usuario.getNome());
             stmt.setString(2, usuario.getSobrenome());
             stmt.setString(3, usuario.getTelefone());
             stmt.setString(4, usuario.getEmail());
+            stmt.setString(5, usuario.getSenha());
 
             stmt.execute();
             return true;
@@ -50,14 +51,15 @@ public class UsuarioDao {
     }
 
     public boolean alterar(Usuario usuario) {
-        String sql = "UPDATE usuario SET nome=?,sobrenome=?,telefone=?,email=?  WHERE codigo=?";
+        String sql = "UPDATE usuario SET nome=?,sobrenome=?,telefone=?,email=?,senha=?  WHERE codigo=?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, usuario.getNome());
             stmt.setString(2, usuario.getSobrenome());
             stmt.setString(3, usuario.getTelefone());
             stmt.setString(4, usuario.getEmail());
-            stmt.setLong(5, usuario.getCodigo());
+            stmt.setString(5, usuario.getSenha());
+            stmt.setLong(6, usuario.getCodigo());
 
             stmt.execute();
             return true;
@@ -113,6 +115,7 @@ public class UsuarioDao {
                 usuario.setSobrenome(resultado.getString("sobrenome"));
                 usuario.setTelefone(resultado.getString("telefone"));
                 usuario.setEmail(resultado.getString("email"));
+                usuario.setSenha(resultado.getString("senha"));
 
                 retorno.add(usuario);
             }
@@ -139,6 +142,7 @@ public class UsuarioDao {
                 usuario.setSobrenome(resultado.getString("sobrenome"));
                 usuario.setTelefone(resultado.getString("telefone"));
                 usuario.setEmail(resultado.getString("email"));
+                usuario.setSenha(resultado.getString("senha"));
 
                 retorno = usuario;
             }

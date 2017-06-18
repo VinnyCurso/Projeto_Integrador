@@ -7,9 +7,11 @@ package controller;
 
 import com.jfoenix.controls.JFXButton;
 import dao.AnuncioDao;
+import dao.ImagemDao;
 import database.ConectaBanco;
 import database.Database;
 import database.DatabaseFactory;
+import database.ManipularImagem;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -29,6 +31,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import model.Anuncio;
+import model.Imagem;
 
 /**
  * FXML Controller class
@@ -216,4 +219,5 @@ public class AnuncioCtr implements Initializable {
 //            }
 //        });
 //    }
+    
 }
