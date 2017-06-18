@@ -43,56 +43,23 @@ import model.Usuario;
  */
 public class UsuarioAlterarExcluirCtr implements Initializable {
 
-    @FXML
-    private JFXComboBox<String> comboFiltroCliente;
-
-    @FXML
-    private JFXTextField txtProcuraCliente;
-
-    @FXML
-    private JFXButton btnPesquisar;
-
-    @FXML
-    private JFXButton btnAlterar;
-
-    @FXML
-    private JFXButton btnExcluir;
-
-    @FXML
-    private JFXButton btnCancelar;
-
-    @FXML
-    private TableView<Usuario> tableClientes;
-
-    @FXML
-    private TableColumn<Usuario, String> colunaCodigo;
-
-    @FXML
-    private TableColumn<Usuario, String> colunaUsuario;
-
-    @FXML
-    private TableColumn<Usuario, String> colunaEmail;
-
-    @FXML
-    private JFXTextField txtCodigo;
-
-    @FXML
-    private JFXTextField txtNome;
-
-    @FXML
-    private JFXTextField txtSobrenome;
-
-    @FXML
-    private JFXTextField txtTelefone;
-
-    @FXML
-    private JFXTextField txtEmail;
-
-    @FXML
-    private JFXPasswordField txtSenha;
-
-    @FXML
-    private ObservableList<String> ListaobservavelFitro;
+    @FXML private JFXComboBox<String> comboFiltroCliente;
+    @FXML private JFXTextField txtProcuraCliente;
+    @FXML private JFXButton btnPesquisar;
+    @FXML private JFXButton btnAlterar;
+    @FXML private JFXButton btnExcluir;
+    @FXML private JFXButton btnCancelar;
+    @FXML private TableView<Usuario> tableClientes;
+    @FXML private TableColumn<Usuario, String> colunaCodigo;
+    @FXML private TableColumn<Usuario, String> colunaUsuario;
+    @FXML private TableColumn<Usuario, String> colunaEmail;
+    @FXML private JFXTextField txtCodigo;
+    @FXML private JFXTextField txtNome;
+    @FXML private JFXTextField txtSobrenome;
+    @FXML private JFXTextField txtTelefone;
+    @FXML private JFXTextField txtEmail;
+    @FXML private JFXPasswordField txtSenha;
+    @FXML private ObservableList<String> ListaobservavelFitro;
 
     //tabela
     private List<Usuario> ListaUsuario;

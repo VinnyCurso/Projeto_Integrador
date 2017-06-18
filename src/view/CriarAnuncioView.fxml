@@ -7,8 +7,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -19,11 +17,8 @@
    <top>
       <AnchorPane prefHeight="103.0" prefWidth="693.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fx:id="imagens" fitHeight="114.0" fitWidth="78.0" layoutX="275.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../image/images.png" />
-               </image>
-            </ImageView>
+            <JFXTextField fx:id="txtTitulo" labelFloat="true" layoutX="80.0" layoutY="64.0" prefHeight="25.0" prefWidth="540.0" promptText="Coloque aqui o título do anuncio" />
+            <Label layoutX="80.0" layoutY="35.0" text="Título" />
          </children>
       </AnchorPane>
    </top>
@@ -44,12 +39,12 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Descricao" GridPane.columnIndex="1">
+            <Label text="Descrição" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets bottom="15.0" />
                </GridPane.margin></Label>
             <JFXTextArea fx:id="txtareaDescricao" labelFloat="true" prefHeight="68.0" prefWidth="519.0" promptText="Coloque aqui a descrição do produto" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <JFXComboBox fx:id="comboCategoria" labelFloat="true" prefHeight="25.0" prefWidth="221.0" promptText="Categoria" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <JFXComboBox fx:id="comboCategoria" labelFloat="true" prefHeight="25.0" prefWidth="221.0" promptText="Categoria" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
             <Label fx:id="inserirImagem" text="Inserir Imagem" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets bottom="100.0" left="10.0" />
@@ -75,7 +70,7 @@
                   <JFXButton fx:id="btnCancelar" buttonType="RAISED" onAction="#btnOnActionCancelar" prefHeight="30.0" prefWidth="100.0" text="Cancelar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
-            <JFXTextField fx:id="txtPreco" labelFloat="true" promptText="00,00" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <JFXTextField fx:id="txtPreco" labelFloat="true" promptText="R$ 0,00" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label text="Preço" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
