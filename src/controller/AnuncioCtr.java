@@ -6,6 +6,8 @@
 package controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
 import dao.AnuncioDao;
 import dao.ImagemDao;
 import database.ConectaBanco;
@@ -42,9 +44,9 @@ public class AnuncioCtr implements Initializable {
 
     @FXML private JFXButton btnPesquisar;
     @FXML private ImageView imagemview;
-    @FXML private Label labelDescricao;
-    @FXML private Label labelPreco;
-    @FXML private Label labelCodigo;
+    @FXML private JFXTextField textFieldTitulo;
+    @FXML private JFXTextArea textAreaDescricao;
+    @FXML private JFXTextField textFieldPreco;
     @FXML private JFXButton btnAnterior;
     @FXML private JFXButton btnProximo;
     @FXML private JFXButton btnListaAnuncio;
@@ -53,6 +55,9 @@ public class AnuncioCtr implements Initializable {
     @FXML private JFXButton btnCancelar;
 
     private Anuncio anuncio;
+    private AnuncioCtr right;
+    private AnuncioCtr left;
+    
     private Stage stage;
 
      ConectaBanco conecta ;
@@ -61,6 +66,14 @@ public class AnuncioCtr implements Initializable {
     private final Connection connection = database.conectar();
     private final AnuncioDao anuncioDao = new AnuncioDao();
 
+    public AnuncioCtr(Anuncio valor){
+        this.anuncio = valor;
+        this.left = right = null;
+    }
+    
+    public AnuncioCtr(){
+        
+    }
     /**
      * Initializes the controller class.
      */
@@ -82,6 +95,7 @@ public class AnuncioCtr implements Initializable {
         dialogStage.setTitle("Manter Anuncio");
         dialogStage.setScene(scene);
         dialogStage.showAndWait();
+        
     }
 
     //Botoes
@@ -116,17 +130,17 @@ public class AnuncioCtr implements Initializable {
     }
 
     @FXML
-    public void btnOnActionAnterior(ActionEvent event) throws IOException {
+    public void btnOnActionAnterior(Anuncio parametro) throws IOException {
 
         JOptionPane.showMessageDialog(null, "Segue a informação do Anuncio Anterior ");
 
         try {
-            conecta.executaSQL("select * from anuncio where codigo=?");
+            conecta.executaSQL("select * from anuncio where codigo 1=1");
             conecta.resul.previous();
 
-            labelCodigo.setText(String.valueOf(conecta.resul.getInt("codigo")));
-            labelDescricao.setText(String.valueOf(conecta.resul.getString("descricao")));
-            labelPreco.setText(String.valueOf(conecta.resul.getFloat("preco")));
+            textFieldPreco.setText(String.valueOf(conecta.resul.getInt("preco")));
+            textFieldTitulo.setText(String.valueOf(conecta.resul.getString("titulo")));
+            textAreaDescricao.setText(String.valueOf(conecta.resul.getFloat("descricao")));
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, " Erro ao mostrar dados!  " + e);
@@ -134,17 +148,11 @@ public class AnuncioCtr implements Initializable {
     }
 
     @FXML
-    public void btnOnActionProximo(ActionEvent event) throws IOException {
-
-        JOptionPane.showMessageDialog(null, "Segue a informação do Anuncio Posterior ");
-
+    public void btnOnActionProximo() throws IOException {
         try {
-             conecta.executaSQL("select * from anuncio");   
-            conecta.resul.next();
-
-            labelCodigo.setText(String.valueOf(conecta.resul.getInt("codigo")));
-            labelDescricao.setText(String.valueOf(conecta.resul.getString("descricao")));
-            labelPreco.setText(String.valueOf(conecta.resul.getFloat("preco")));
+            textFieldPreco.setText(String.valueOf(conecta.resul.getInt("preco")));
+            textFieldTitulo.setText(String.valueOf(conecta.resul.getString("titulo")));
+            textAreaDescricao.setText(String.valueOf(conecta.resul.getFloat("descricao")));
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, " Erro ao mostrar dados!  " + e);
@@ -154,7 +162,8 @@ public class AnuncioCtr implements Initializable {
     @FXML
     public void btnOnActionPesquisar() throws IOException {
 
-        JOptionPane.showMessageDialog(null, "Qual dado voce deseja consultar ? ");
+        ListaAnuncioViewCtr listaAnuncioViewCtr = new ListaAnuncioViewCtr();
+        listaAnuncioViewCtr.gerarTela();
 
     }
 
