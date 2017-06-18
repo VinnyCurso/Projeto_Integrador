@@ -130,7 +130,7 @@ public class AnuncioCtr implements Initializable {
     }
 
     @FXML
-    public void btnOnActionAnterior(Anuncio parametro) throws IOException {
+    public void btnOnActionAnterior() throws IOException {
 
         JOptionPane.showMessageDialog(null, "Segue a informação do Anuncio Anterior ");
 
@@ -164,6 +164,15 @@ public class AnuncioCtr implements Initializable {
 
         ListaAnuncioViewCtr listaAnuncioViewCtr = new ListaAnuncioViewCtr();
         listaAnuncioViewCtr.gerarTela();
+
+    }
+    
+    public void itemTabela(Anuncio anuncio) throws IOException {
+        if (this.anuncio != null) {
+            textFieldTitulo.setText(anuncio.getTitulo());
+            textAreaDescricao.setText(anuncio.getDescricao());
+            textFieldPreco.setText(String.valueOf(anuncio.getValor()));
+        }
 
     }
 

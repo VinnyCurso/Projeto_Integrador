@@ -69,7 +69,6 @@ public class AnunciosMenuCtr implements Initializable {
 
     @FXML
     public void btnOnActionAnuncios() throws IOException {
-
         AnuncioCtr anuncioCtr = new AnuncioCtr();
         anuncioCtr.gerarTela();
     }
