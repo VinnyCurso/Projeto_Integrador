@@ -114,6 +114,7 @@ public class UsuarioCtr implements Initializable {
     public void btnOnActionNovo() throws IOException {
 
         JOptionPane.showMessageDialog(null, "Preparado para novos dados ");
+        LimparTela();
 
     }
  
