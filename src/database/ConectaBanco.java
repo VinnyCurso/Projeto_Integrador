@@ -37,7 +37,7 @@ public class ConectaBanco {
             System.setProperty("jdbc.Drivers", driver);
             conection = DriverManager.getConnection(caminho, usuario, senha);
 
-            JOptionPane.showMessageDialog(null, "Conectado com sucesso! ");
+//            JOptionPane.showMessageDialog(null, "Conectado com sucesso! ");
 
         } catch (SQLException ex) {
 
@@ -62,7 +62,7 @@ public class ConectaBanco {
         try {
             conection.close();
             
-            JOptionPane.showMessageDialog(null, "Desconectado  com sucesso! ");
+//            JOptionPane.showMessageDialog(null, "Desconectado  com sucesso! ");
             
         } catch (SQLException ex) {
             
