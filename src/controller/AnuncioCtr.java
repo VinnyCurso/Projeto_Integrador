@@ -50,8 +50,8 @@ public class AnuncioCtr implements Initializable {
     @FXML private JFXButton btnAnterior;
     @FXML private JFXButton btnProximo;
     @FXML private JFXButton btnListaAnuncio;
-    @FXML private JFXButton btnDetalhesProduto;
-    @FXML private JFXButton btnComprar;
+    @FXML private JFXButton btnMensagem;
+    @FXML private JFXButton btnCompra;
     @FXML private JFXButton btnCancelar;
 
     private Anuncio anuncio;
@@ -117,17 +117,18 @@ public class AnuncioCtr implements Initializable {
     }
 
     @FXML
-    public void btnOnActionDetalhesProduto() throws IOException, SQLException {
+    public void btnOnActionMensagem() throws IOException, SQLException {
 
-        JOptionPane.showMessageDialog(null, "Segue os detalhes do Produto ");
+             MensagemCtr mensagemCtr = new MensagemCtr();
+             mensagemCtr.gerarTela();
 
     }
 
     @FXML
     public void btnOnActionCompra() throws IOException, SQLException {
 
-         MensagemCtr mensagemCtr = new MensagemCtr();
-         mensagemCtr.gerarTela();
+         CompraCtr compraCtr = new CompraCtr();
+         compraCtr.gerarTela();
 
     }
 
@@ -148,9 +149,9 @@ public class AnuncioCtr implements Initializable {
             conecta.executaSQL("select * from anuncio where codigo 1=1");
             conecta.resul.previous();
 
-            textFieldPreco.setText(String.valueOf(conecta.resul.getInt("preco")));
+            textFieldPreco.setText(String.valueOf(conecta.resul.getFloat("preco")));
             textFieldTitulo.setText(String.valueOf(conecta.resul.getString("titulo")));
-            textAreaDescricao.setText(String.valueOf(conecta.resul.getFloat("descricao")));
+            textAreaDescricao.setText(String.valueOf(conecta.resul.getString("descricao")));
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, " Erro ao mostrar dados!  " + e);

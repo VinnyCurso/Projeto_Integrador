@@ -31,6 +31,9 @@ public class DrawerCtr implements Initializable {
 
     @FXML
     private JFXButton btnAnuncio;
+    
+    @FXML
+    private JFXButton btnMensagem;
 
     @FXML
     private JFXButton btnListaAnuncio;
@@ -97,6 +100,13 @@ public class DrawerCtr implements Initializable {
         
         ListaAnuncioViewCtr listaAnuncioViewCtr = new ListaAnuncioViewCtr();
         listaAnuncioViewCtr.gerarTela();
+    }
+    
+        @FXML
+    public void btnOnActionMensagem()throws IOException {
+        
+        MensagemCtr mensagemCtr = new MensagemCtr();
+        mensagemCtr.gerarTela();
     }
     
 }

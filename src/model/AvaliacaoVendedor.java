@@ -12,18 +12,20 @@ package model;
 public class AvaliacaoVendedor {
     
     private int codigo;
+    private String anuncio;
+    private String usuario;
     private int nota;
-    private Anuncio anuncio;
-    private Usuario usuario;
+    private String sugestao;
 
     public AvaliacaoVendedor() {
     }
 
-    public AvaliacaoVendedor(int codigo, int nota, Anuncio anuncio, Usuario usuario) {
+    public AvaliacaoVendedor(int codigo, int nota, String anuncio, String usuario, String sugestao) {
         this.codigo = codigo;
         this.nota = nota;
         this.anuncio = anuncio;
         this.usuario = usuario;
+        this.sugestao = sugestao;
     }
 
     public int getCodigo() {
@@ -42,22 +44,30 @@ public class AvaliacaoVendedor {
         this.nota = nota;
     }
 
-    public Anuncio getAnuncio() {
+    public String getAnuncio() {
         return anuncio;
     }
 
-    public void setAnuncio(Anuncio anuncio) {
+    public void setAnuncio(String anuncio) {
         this.anuncio = anuncio;
     }
 
-    public Usuario getUsuario() {
+    public String getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
-    
+
+    public String getSugestao() {
+        return sugestao;
+    }
+
+    public void setSugestao(String sugestao) {
+        this.sugestao = sugestao;
+    }
+
     
     
 }

@@ -49,8 +49,8 @@
       <AnchorPane prefHeight="123.0" prefWidth="800.0">
          <children>
             <JFXButton fx:id="btnListaAnuncio" layoutX="48.0" layoutY="24.0" onAction="#btnOnActionListarAnuncio" prefHeight="40.0" prefWidth="160.0" text="Listar Anuncios" />
-            <JFXButton fx:id="btnDetalhesProduto" layoutX="240.0" layoutY="24.0" onAction="#btnOnActionDetalhesProduto" prefHeight="40.0" prefWidth="160.0" text="Detalhes Deste Produto" />
-            <JFXButton fx:id="btnComprar" buttonType="RAISED" layoutX="441.0" layoutY="24.0" onAction="#btnOnActionCompra" prefHeight="40.0" prefWidth="160.0" text="Comprar" />
+            <JFXButton fx:id="btnCompra" layoutX="240.0" layoutY="24.0" onAction="#btnOnActionCompra" prefHeight="40.0" prefWidth="160.0" text="Compra" />
+            <JFXButton fx:id="btnMensagem" buttonType="RAISED" layoutX="441.0" layoutY="24.0" onAction="#btnOnActionMensagem" prefHeight="40.0" prefWidth="160.0" text="Mensagem" />
             <JFXButton fx:id="btnCancelar" layoutX="631.0" layoutY="24.0" onAction="#btnOnActionCancelar" prefHeight="40.0" prefWidth="160.0" text="Cancelar" />
          </children>
       </AnchorPane>

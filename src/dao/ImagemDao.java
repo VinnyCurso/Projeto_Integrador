@@ -5,6 +5,7 @@
  */
 package dao;
 
+import database.ManipularImagem;
 import java.io.FileReader;
 import java.sql.Blob;
 import java.sql.Connection;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.embed.swing.SwingFXUtils;
 import model.Imagem;
 
 /**
@@ -57,7 +59,7 @@ public class ImagemDao {
         String sql = "UPDATE imagem SET imagem=?  WHERE codigo=?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-//            stmt.setBlob(1, (Blob) imagem.getImagem());
+            stmt.setBytes(1, imagem.getImagem());
 
             stmt.execute();
             return true;
@@ -72,6 +74,7 @@ public class ImagemDao {
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, (int) imagem.getCodigo());
+            
             stmt.execute();
             return true;
         } catch (SQLException ex) {

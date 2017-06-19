@@ -82,6 +82,7 @@ public class UsuarioCtr implements Initializable {
         dialogStage.setTitle("Cadastro Usuario");
         dialogStage.setScene(scene);
         dialogStage.showAndWait();
+
     }
         
         

@@ -33,7 +33,8 @@ public class MainAppCtr implements Initializable {
     
     @FXML  JFXButton btnAnuncio;
     @FXML JFXButton btnUsuario;
-    @FXML JFXButton btnCategoria;
+    @FXML JFXButton btnListaAnuncio;
+    @FXML JFXButton btnAvaliacao;
     @FXML JFXButton btnMensagem;
     
     
@@ -84,7 +85,6 @@ public class MainAppCtr implements Initializable {
     }
         
         
-                   //Ação para chamar a tela de Mensagem
      @FXML
     public void btnOnActionCliente()throws IOException {
         
@@ -99,12 +99,19 @@ public class MainAppCtr implements Initializable {
         anunciosMenuCtr.gerarTela();
     }
     
-                        //Ação para chamar a tela de Mensagem
+                 
      @FXML
     public void btnOnActionAvaliacao()throws IOException {
         
         AvaliacaoVendedorCtr avaliacaoVendedorCtr = new AvaliacaoVendedorCtr();
         avaliacaoVendedorCtr.gerarTela();
+    }
+    
+       @FXML
+    public void btnOnActionMensagem()throws IOException {
+        
+        MensagemCtr mensagemCtr = new MensagemCtr();
+        mensagemCtr.gerarTela();
     }
     
   

@@ -94,6 +94,7 @@ public class MensagemCtr implements Initializable {
     
     @FXML private ObservableList<String> ListaobservavelTipo;
     
+    
     //tabela
     
     private List<Mensagem> ListaMensagem;
@@ -162,6 +163,10 @@ public class MensagemCtr implements Initializable {
         }
         ListaobservavelUsuario = FXCollections.observableArrayList(listaUsuario);
         comboUsuario.setItems(ListaobservavelUsuario);
+
+    
+        
+        
     }
 
     public void CarregarComboCategoria() {

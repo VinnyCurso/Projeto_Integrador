@@ -13,9 +13,12 @@ import dao.AnuncioDao;
 import dao.ImagemDao;
 import database.Database;
 import database.DatabaseFactory;
+import database.ManipulaImagem;
 import database.ManipularImagem;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -27,6 +30,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,6 +42,8 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
@@ -65,11 +71,13 @@ public class CriarAnuncioCtr implements Initializable {
     @FXML private ImageView imagens;
     
     private Anuncio anuncio;
+    private Imagem imag;
     BufferedImage imagem;
 
     private final Database database = DatabaseFactory.getDatabase("postgresql");
     private final Connection connection = database.conectar();
     private final AnuncioDao anuncioDao = new AnuncioDao();
+    private final ImagemDao imagemDao = new ImagemDao();
 
     /**
      * Initializes the controller class.
@@ -99,27 +107,39 @@ public class CriarAnuncioCtr implements Initializable {
 //        start.NStart();
     }
 
-    public void CarregarImagens() throws Exception {
+    public File CarregarImagens() {
         
-        JFileChooser fc = new JFileChooser();
-        int res = fc.showOpenDialog(null);
+//        JFileChooser fc = new JFileChooser();
+//        int res = fc.showOpenDialog(null);
+//
+//        if (res == JFileChooser.APPROVE_OPTION) {
+//            File arquivo = fc.getSelectedFile();
+//            
+//
+//            try {
+//                imagem = ManipularImagem.setImagemDimensao(arquivo.getAbsolutePath(), 160, 160);
+//
+//                imagens.setImage(new Image("/image/"));
+//
+//            } catch (Exception ex) {
+//                // System.out.println(ex.printStackTrace().toString());
+//            }
+//
+//        } else {
+//            JOptionPane.showMessageDialog(null, "Voce nao selecionou nenhum arquivo.");
+//        }
+        FileChooser fileChooser = new FileChooser();
 
-        if (res == JFileChooser.APPROVE_OPTION) {
-            File arquivo = fc.getSelectedFile();
-            
+        FileChooser.ExtensionFilter extesionJPEG = new FileChooser.ExtensionFilter("JPEG arquivos (*.JPEG)", "*.JPEG");
+        FileChooser.ExtensionFilter extesionJpeg = new FileChooser.ExtensionFilter("jpeg arquivos (*.jpeg)", "*.jpeg");
+        FileChooser.ExtensionFilter extesionJPG = new FileChooser.ExtensionFilter("JPG arquivos (*.JPG)", "*.JPG");
+        FileChooser.ExtensionFilter extesionJpg = new FileChooser.ExtensionFilter("jpg arquivos (*.jpg)", "*.jpg");
+        FileChooser.ExtensionFilter extesionPNG = new FileChooser.ExtensionFilter("PNG arquivos (*.PNG)", "*.PNG");
+        FileChooser.ExtensionFilter extesionPng = new FileChooser.ExtensionFilter("png arquivos (*.png)", "*.png");
 
-            try {
-                imagem = ManipularImagem.setImagemDimensao(arquivo.getAbsolutePath(), 160, 160);
+        fileChooser.getExtensionFilters().addAll(extesionJPG, extesionJpg, extesionJPEG, extesionJpeg, extesionPNG, extesionPng);
 
-                imagens.setImage(new Image("/image/"));
-
-            } catch (Exception ex) {
-                // System.out.println(ex.printStackTrace().toString());
-            }
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Voce nao selecionou nenhum arquivo.");
-        }
+        return fileChooser.showOpenDialog(null);
     }
 
     public void EnvairImagen() throws Exception {
@@ -204,6 +224,31 @@ public class CriarAnuncioCtr implements Initializable {
         stage.close();
 
     }
+    
+//     public File selecionaImagem() {
+////        FileChooser fileChooser = new FileChooser();
+////
+////        FileChooser.ExtensionFilter extesionJPEG = new FileChooser.ExtensionFilter("JPEG arquivos (*.JPEG)", "*.JPEG");
+////        FileChooser.ExtensionFilter extesionJpeg = new FileChooser.ExtensionFilter("jpeg arquivos (*.jpeg)", "*.jpeg");
+////        FileChooser.ExtensionFilter extesionJPG = new FileChooser.ExtensionFilter("JPG arquivos (*.JPG)", "*.JPG");
+////        FileChooser.ExtensionFilter extesionJpg = new FileChooser.ExtensionFilter("jpg arquivos (*.jpg)", "*.jpg");
+////        FileChooser.ExtensionFilter extesionPNG = new FileChooser.ExtensionFilter("PNG arquivos (*.PNG)", "*.PNG");
+////        FileChooser.ExtensionFilter extesionPng = new FileChooser.ExtensionFilter("png arquivos (*.png)", "*.png");
+////
+////        fileChooser.getExtensionFilters().addAll(extesionJPG, extesionJpg,extesionJPEG, extesionJpeg, extesionPNG, extesionPng);
+////
+////        return fileChooser.showOpenDialog(null);
+//    }
+     
+     @FXML
+    public void abrirImagem(MouseEvent event) throws FileNotFoundException {
+        File arquivoSelecionado = CarregarImagens();
+
+        if (arquivoSelecionado != null) {
+            imagens.setImage(new Image(new FileInputStream(arquivoSelecionado)));
+        }
+    }
+
     
     
     

@@ -107,6 +107,7 @@ public class UsuarioAlterarExcluirCtr implements Initializable {
         dialogStage.setTitle("Alterar e Exlcuir Usuario");
         dialogStage.setScene(scene);
         dialogStage.showAndWait();
+       
     }
 
     private void preencherTela(Usuario usuario) throws Exception {
