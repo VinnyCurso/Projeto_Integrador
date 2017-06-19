@@ -74,6 +74,15 @@ public class AnuncioCtr implements Initializable {
     public AnuncioCtr(){
         
     }
+    
+    public void imprimeOrdem(AnuncioCtr aux) throws IOException {
+        if (aux == null) {
+            return;
+        }
+        imprimeOrdem(aux.left);
+        btnOnActionProximo(aux.anuncio);
+        imprimeOrdem(aux.right);
+    }
     /**
      * Initializes the controller class.
      */
@@ -117,7 +126,7 @@ public class AnuncioCtr implements Initializable {
     public void btnOnActionCompra() throws IOException, SQLException {
 
          MensagemCtr mensagemCtr = new MensagemCtr();
-        mensagemCtr.gerarTela();
+         mensagemCtr.gerarTela();
 
     }
 
@@ -148,7 +157,7 @@ public class AnuncioCtr implements Initializable {
     }
 
     @FXML
-    public void btnOnActionProximo() throws IOException {
+    public void btnOnActionProximo(Anuncio parametro) throws IOException {
         try {
             anuncioDao.buscar(1);
             textFieldPreco.setText(String.valueOf("R$ "+anuncio.getValor()));

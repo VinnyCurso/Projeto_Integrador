@@ -55,7 +55,7 @@ public class ListaAnuncioViewCtr implements Initializable {
     @FXML private TableColumn<Anuncio, String> colunaTitulo;
     @FXML private TableColumn<Anuncio, String> colunaDescricao;
     @FXML private TableColumn<Anuncio, String> colunacategoria;
-    @FXML private TableColumn<Anuncio, Float> colunapreco;
+    @FXML private TableColumn<Anuncio, String> colunapreco;
     @FXML private ObservableList<String> ListaobservavelFiltro;
 
     private Anuncio anuncio;
@@ -81,7 +81,7 @@ public class ListaAnuncioViewCtr implements Initializable {
         conecta.conexao();
         anuncioDao.setConnection(connection);
         anuncio = new Anuncio();
-        CarregarComboFiltro();
+//        CarregarComboFiltro();
         try {
             CarregarTabelaAnuncio(anuncio);
         } catch (SQLException ex) {
@@ -104,17 +104,17 @@ public class ListaAnuncioViewCtr implements Initializable {
         dialogStage.showAndWait();
     }
 
-    public void CarregarComboFiltro() {
-        List<String> listaFiltro = new ArrayList();
-        String nome[] = {"codigo", "descricao", "categoria", "preco",};
-        String[] a = new String[nome.length];
-        for (int i = 0; i < nome.length; i++) {
-            a[i] = new String(nome[i]);
-            listaFiltro.add(a[i]);
-        }
-        ListaobservavelFiltro = FXCollections.observableArrayList(listaFiltro);
-        comboFiltroAnuncio.setItems(ListaobservavelFiltro);
-    }
+//    public void CarregarComboFiltro() {
+//        List<String> listaFiltro = new ArrayList();
+//        String nome[] = {"codigo", "descricao", "categoria", "preco",};
+//        String[] a = new String[nome.length];
+//        for (int i = 0; i < nome.length; i++) {
+//            a[i] = nome[i];
+//            listaFiltro.add(a[i]);
+//        }
+//        ListaobservavelFiltro = FXCollections.observableArrayList(listaFiltro);
+//        comboFiltroAnuncio.setItems(ListaobservavelFiltro);
+//    }
 
     public void CarregarTabelaAnuncio(Anuncio parametro) throws SQLException, IOException {
 
