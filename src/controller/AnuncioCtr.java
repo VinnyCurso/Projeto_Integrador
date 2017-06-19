@@ -75,6 +75,15 @@ public class AnuncioCtr implements Initializable {
     public AnuncioCtr(){
         
     }
+    
+    public void imprimeOrdem(AnuncioCtr aux) {
+        if (aux == null) {
+            return;
+        }
+        imprimeOrdem(aux.left);
+        System.out.println(aux.anuncio);
+        imprimeOrdem(aux.right);
+    }
     /**
      * Initializes the controller class.
      */
@@ -118,7 +127,7 @@ public class AnuncioCtr implements Initializable {
     public void btnOnActionCompra() throws IOException, SQLException {
 
          MensagemCtr mensagemCtr = new MensagemCtr();
-        mensagemCtr.gerarTela();
+         mensagemCtr.gerarTela();
 
     }
 
@@ -151,9 +160,10 @@ public class AnuncioCtr implements Initializable {
     @FXML
     public void btnOnActionProximo() throws IOException {
         try {
-            textFieldPreco.setText(String.valueOf(conecta.resul.getInt("preco")));
-            textFieldTitulo.setText(String.valueOf(conecta.resul.getString("titulo")));
-            textAreaDescricao.setText(String.valueOf(conecta.resul.getFloat("descricao")));
+            anuncioDao.buscar(1);
+            textFieldPreco.setText(String.valueOf("R$ "+anuncio.getValor()));
+            textFieldTitulo.setText(String.valueOf(anuncio.getTitulo()));
+            textAreaDescricao.setText(String.valueOf(anuncio.getDescricao()));
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, " Erro ao mostrar dados!  " + e);

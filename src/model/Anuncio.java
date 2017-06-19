@@ -75,8 +75,5 @@ public class Anuncio {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
-    }
-    
-    
-    
+    }  
 }

@@ -125,30 +125,22 @@ public class AnuncioDao {
         return retorno;
     }
 
-    public Anuncio buscar(Anuncio anuncio) {
+    public Anuncio buscar(int parametro) throws SQLException {
         String sql = "SELECT * FROM anuncio WHERE codigo=?";
-        Anuncio retorno = new Anuncio();
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
+        
+            PreparedStatement prd = connection.prepareStatement(sql);
 
-            stmt.setInt(1, (int) anuncio.getCodigo());
-
-            ResultSet resultado = stmt.executeQuery();
-
-            if (resultado.next()) {
-
-                anuncio.setCodigo(resultado.getInt("codigo"));
-                anuncio.setDescricao(resultado.getString("descricao"));
-                anuncio.setCategoria(resultado.getString("categoria"));
-                anuncio.setValor(resultado.getFloat("valor"));
-                anuncio.setTitulo(resultado.getString("titulo"));
-                
-
-                retorno = anuncio;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(AnuncioDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            prd.setInt(1, parametro);
+            ResultSet rs = prd.executeQuery();
+            
+            Anuncio retorno = new Anuncio();
+            if (rs.next()) {
+                retorno.setCodigo(rs.getInt("codigo"));
+                retorno.setDescricao(rs.getString("descricao"));
+                retorno.setCategoria(rs.getString("categoria"));
+                retorno.setValor(rs.getFloat("preco"));
+                retorno.setTitulo(rs.getString("titulo"));
+            }      
         return retorno;
     }
     
