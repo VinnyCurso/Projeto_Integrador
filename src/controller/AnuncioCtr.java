@@ -75,12 +75,12 @@ public class AnuncioCtr implements Initializable {
         
     }
     
-    public void imprimeOrdem(AnuncioCtr aux) throws IOException {
+    public void imprimeOrdem(AnuncioCtr aux) {
         if (aux == null) {
             return;
         }
         imprimeOrdem(aux.left);
-        btnOnActionProximo(aux.anuncio);
+        System.out.println(aux.anuncio);
         imprimeOrdem(aux.right);
     }
     /**
@@ -157,7 +157,7 @@ public class AnuncioCtr implements Initializable {
     }
 
     @FXML
-    public void btnOnActionProximo(Anuncio parametro) throws IOException {
+    public void btnOnActionProximo() throws IOException {
         try {
             anuncioDao.buscar(1);
             textFieldPreco.setText(String.valueOf("R$ "+anuncio.getValor()));
