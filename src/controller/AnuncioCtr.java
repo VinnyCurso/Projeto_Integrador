@@ -150,9 +150,10 @@ public class AnuncioCtr implements Initializable {
     @FXML
     public void btnOnActionProximo() throws IOException {
         try {
-            textFieldPreco.setText(String.valueOf(conecta.resul.getInt("preco")));
-            textFieldTitulo.setText(String.valueOf(conecta.resul.getString("titulo")));
-            textAreaDescricao.setText(String.valueOf(conecta.resul.getFloat("descricao")));
+            anuncioDao.buscar(1);
+            textFieldPreco.setText(String.valueOf("R$ "+anuncio.getValor()));
+            textFieldTitulo.setText(String.valueOf(anuncio.getTitulo()));
+            textAreaDescricao.setText(String.valueOf(anuncio.getDescricao()));
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, " Erro ao mostrar dados!  " + e);
